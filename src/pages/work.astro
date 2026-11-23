@@ -1,0 +1,133 @@
+---
+// Work — Figma "Work v2 — structure fixes" (2442:1143), mobile 2442:1426
+import Base from '../layouts/Base.astro';
+import Ticker from '../components/Ticker.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ClosingBlock from '../components/ClosingBlock.astro';
+import { projects } from '../data/site';
+
+const [migration, viajeros, protege, credicomer, bancoAzul] = projects;
+const big = [migration, viajeros];
+const small = [protege, credicomer, bancoAzul];
+
+const steps = [
+  { n: '01', name: 'who are we designing for?', body: 'Get myself into the field where the action happens, even experience it myself if possible to understand the root problems.' },
+  { n: '02', name: 'how do we solve it?', body: 'Brainstorm, with the users, the devs, the whole team. We all have valuable inputs on how to solve the puzzle. Before designing, we gotta understand and prioritize.' },
+  { n: '03', name: 'is this feasible?', body: 'Let’s be real, we all want to save the world, but we gotta start with our “metro cuadrado”. What can we achieve with the time and resources we have that can actually improve the user’s experience?' },
+  { n: '04', name: 'lemme check...', body: 'Is this really usable or just pretty? Check-in the prototype with the people who are gonna be first hand using this.' },
+  { n: '05', name: 'adjust or pivot and shippp 🚀', body: 'Life’s too short to wait 8 months for a feature release. I believe in the power of testing, adjust, re-test, ship!' },
+];
+
+const skills = ['Problem Solving', 'Critical Thinking', 'Leadership', 'Time Management', 'UX Flows', 'Wireframing', 'Prototyping', 'A/B Testing', 'User-Centered Design', 'Figma'];
+const hide = "this.style.display='none'";
+---
+<Base title="Work — Estefani Ruiz" active="Work">
+  <!-- Featured projects -->
+  <section class="featured page-section" aria-labelledby="featured-title">
+    <SectionTitle id="featured-title">featured projects</SectionTitle>
+    <div class="featured__row featured__row--two">
+      {big.map((p) => <ProjectCard {...p} />)}
+    </div>
+    <div class="featured__row featured__row--three">
+      {small.map((p) => <ProjectCard {...p} />)}
+    </div>
+  </section>
+
+  <!-- My thought process -->
+  <section class="process page-section" aria-labelledby="process-title">
+    <SectionTitle id="process-title">my thought process</SectionTitle>
+    <ol class="process__steps">
+      {steps.map((s, i) => (
+        <li class={`step step--${i + 1}`}>
+          <div class="step__head">
+            <span class="step__n">{s.n}</span>
+            <h3 class="heading-h1 step__name">{s.name}</h3>
+          </div>
+          <p class="body-l step__body">{s.body}</p>
+          {i === 0 && <img class="doodle doodle--circle-yellow" src="/assets/doodles/circle-yellow.svg" alt="" aria-hidden="true" onerror={hide} />}
+          {i === 2 && <img class="doodle doodle--circle-gray" src="/assets/doodles/circle-gray.png" alt="" aria-hidden="true" onerror={hide} />}
+          {i === 3 && <img class="doodle doodle--underline-pink" src="/assets/doodles/underline-pink.svg" alt="" aria-hidden="true" onerror={hide} />}
+          {i === 4 && <img class="doodle doodle--accent" src="/assets/doodles/accent.svg" alt="" aria-hidden="true" onerror={hide} />}
+        </li>
+      ))}
+      <img class="arrow arrow--1" src="/assets/doodles/arrow-1.svg" alt="" aria-hidden="true" onerror={hide} />
+      <img class="arrow arrow--2" src="/assets/doodles/arrow-2.svg" alt="" aria-hidden="true" onerror={hide} />
+      <img class="arrow arrow--3" src="/assets/doodles/arrow-3.svg" alt="" aria-hidden="true" onerror={hide} />
+      <img class="arrow arrow--4" src="/assets/doodles/arrow-4.svg" alt="" aria-hidden="true" onerror={hide} />
+    </ol>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills page-section" aria-labelledby="skills-title">
+    <SectionTitle id="skills-title">what i’ve applied over the years in my projects</SectionTitle>
+    <ul class="skills__pills">
+      {skills.map((s) => <li class="pill">{s}</li>)}
+    </ul>
+  </section>
+
+  <ClosingBlock />
+  <Ticker />
+</Base>
+
+<style>
+  .featured { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-28); padding-block: var(--page-padding-s); }
+  .featured__row { display: grid; gap: var(--spacing-xl); width: 100%; }
+  .featured__row--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .featured__row--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  /* Process: zig-zag on desktop (Figma positions in a 976×748 box), stacked below */
+  .process { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-28); padding-top: var(--page-padding-s); }
+  .process__steps { position: relative; list-style: none; margin: 0; padding: 0; width: 976px; height: 748px; }
+  .step { position: absolute; display: flex; flex-direction: column; gap: var(--spacing-28); width: 454px; }
+  .step--1 { left: 0; top: 0; }
+  .step--2 { left: 556px; top: 110px; }
+  .step--3 { left: 26px; top: 276px; }
+  .step--4 { left: 525px; top: 386px; }
+  .step--5 { left: 127px; top: 544px; }
+  .step--1 .step__name { max-width: 220px; }
+  .step--5 .step__name { max-width: 253px; }
+  .step__head { display: flex; align-items: center; gap: var(--spacing-10); position: relative; z-index: 1; }
+  .step__n { font-size: 12px; color: var(--text-primary-base); flex: none; }
+  .step__name { color: var(--text-neutral-base); }
+  .doodle, .arrow { position: absolute; pointer-events: none; height: auto; }
+  .doodle--circle-yellow { left: -119px; top: -25px; width: 434px; z-index: 0; }
+  .doodle--circle-gray { left: 65px; top: -21px; width: 204px; opacity: 0.1; }
+  .doodle--underline-pink { left: -1px; top: 23px; width: 273px; }
+  .doodle--accent { left: 173px; top: -49px; width: 100px; }
+  .arrow--1 { left: 380px; top: 17px; width: 132px; }
+  .arrow--2 { left: 415px; top: 210px; width: 116px; }
+  .arrow--3 { left: 433px; top: 405px; width: 76px; }
+  .arrow--4 { left: 424px; top: 532px; width: 102px; }
+
+  /* Skills */
+  .skills { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-20); padding-top: var(--page-padding-s); padding-bottom: var(--page-padding-m); }
+  .skills__pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-10); }
+  .pill {
+    padding: var(--spacing-14) var(--spacing-18);
+    background: var(--bg-page);
+    border: 1px solid var(--border-primary-silent);
+    border-radius: var(--radius-full);
+    font-family: var(--font-secondary);
+    font-size: var(--text-size-highlight-l);
+    color: var(--text-neutral-base);
+  }
+
+  @media (max-width: 1100px) {
+    .process__steps { width: 100%; max-width: 640px; height: auto; display: flex; flex-direction: column; gap: var(--spacing-48); }
+    .step { position: relative; left: auto !important; top: auto !important; width: 100%; }
+    .step--1 .step__name, .step--5 .step__name { max-width: none; }
+    .arrow { display: none; }
+    .doodle--circle-yellow { left: -40px; top: -28px; width: 340px; }
+  }
+  @media (max-width: 1023px) {
+    .featured__row--three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 767px) {
+    .featured__row--two, .featured__row--three { grid-template-columns: 1fr; }
+    .process__steps { gap: var(--spacing-32); }
+    .step { gap: var(--spacing-12); }
+    .doodle--circle-yellow { left: -24px; top: -22px; width: 280px; }
+    .pill { padding: var(--spacing-10) var(--spacing-14); }
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+// Under construction — shown for any page that isn't built yet (and real 404s).
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Ticker from '../components/Ticker.astro';
+import ClosingBlock from '../components/ClosingBlock.astro';
+---
+<Base title="Under construction — Estefani Ruiz" description="This page is still being designed.">
+  <section class="wip page-section">
+    <img class="wip__memoji" src="/assets/memoji.svg" width="131" height="137" alt="" aria-hidden="true" />
+    <h1 class="highlight-hxl wip__title">Still <span class="wip__underline">sketching</span> this one</h1>
+    <p class="heading-h3 wip__body">This page is under construction. Good design takes a few rounds of testing, so it's not quite ready yet.</p>
+    <div class="wip__actions">
+      <Button href="/work" iconRight="fa-solid fa-arrow-right">See my work</Button>
+      <Button href="/" type="secondary">Back home</Button>
+    </div>
+  </section>
+  <Ticker phrases={['Work in progress']} />
+  <ClosingBlock />
+</Base>
+
+<style>
+  .wip {
+    display: flex; flex-direction: column; align-items: center; gap: var(--spacing-2xl);
+    padding-top: var(--page-padding-xl); padding-bottom: var(--spacing-80); text-align: center;
+  }
+  .wip__memoji { width: 131px; height: 137px; }
+  .wip__title { color: var(--text-neutral-base); }
+  .wip__underline { position: relative; white-space: nowrap; isolation: isolate; }
+  .wip__underline::after {
+    content: ''; position: absolute; left: -3%; right: -3%; bottom: -0.16em; height: 0.42em;
+    background: url('/assets/underline.svg') center / 100% 100% no-repeat; z-index: -1;
+  }
+  .wip__body { max-width: 560px; color: var(--text-neutral-base); }
+  .wip__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-2xl); }
+  @media (max-width: 767px) {
+    .wip { padding-top: var(--spacing-60); }
+    .wip__memoji { width: 96px; height: 100px; }
+    .wip__actions :global(.btn) { flex: 1 1 160px; }
+  }
+</style>

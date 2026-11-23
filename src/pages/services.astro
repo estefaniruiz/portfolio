@@ -1,0 +1,137 @@
+---
+// Services — Figma "Services v2 — desktop" (2525:2012), mobile 2525:2246
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Ticker from '../components/Ticker.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Sparkle from '../components/Sparkle.astro';
+import ClosingBlock from '../components/ClosingBlock.astro';
+
+const services = [
+  {
+    tag: 'Product design · UX/UI',
+    tone: 'dark',
+    title: 'From messy idea to shipped product.',
+    items: ['Research and discovery with real users', 'User flows and wireframes', 'Design system setup: tokens, components, docs', 'UI design and dev-ready handoff'],
+    goodFor: 'MVPs, redesigns, new features',
+  },
+  {
+    tag: 'UX consulting',
+    tone: 'blush',
+    title: 'A fresh set of eyes, with receipts.',
+    items: ['UX and accessibility audits', 'UI and interaction design audits', 'Product messaging and UX copy, so people get what you built (and want it)', 'Prioritized fixes your team can act on'],
+    goodFor: 'teams with a product but no design lead',
+  },
+];
+
+const steps = [
+  { n: '01', name: "let's talk", body: 'A quick call about the problem, not the pixels.' },
+  { n: '02', name: 'clear scope', body: 'Deliverables and timeline defined up front. Two revision rounds included.', highlight: true },
+  { n: '03', name: 'ship it', body: 'Regular check-ins and files your devs can actually use.' },
+];
+---
+<Base title="Services — Estefani Ruiz" active="Services" tone="page">
+  <!-- Hero -->
+  <section class="s-hero page-section">
+    <SectionTitle>services</SectionTitle>
+    <h1 class="highlight-hxl s-hero__title">
+      You bring the <span class="s-hero__circled">messy<img src="/assets/doodles/circle-gray.png" alt="" aria-hidden="true" onerror="this.style.display='none'" /></span> problem.<br />
+      I'll find the simple path.
+    </h1>
+    <p class="heading-h2 s-hero__lead">Product design and UX consulting for startups in any industry, from first sketch to a system your devs can actually build on.</p>
+  </section>
+
+  <!-- Service cards -->
+  <section class="s-cards page-section" aria-label="Services">
+    {services.map((s) => (
+      <article class="s-card">
+        <div class="s-card__content">
+          <span class={`s-card__tag s-card__tag--${s.tone}`}>{s.tag}</span>
+          <h2 class="highlight-2xl s-card__title">{s.title}</h2>
+          <ul class="s-card__items">
+            {s.items.map((it) => <li><Sparkle size={18} /><span class="body-l">{it}</span></li>)}
+          </ul>
+        </div>
+        <p class="s-card__good"><strong>Good for:</strong> {s.goodFor}</p>
+      </article>
+    ))}
+  </section>
+
+  <!-- Process -->
+  <section class="s-process page-section" aria-labelledby="together-title">
+    <SectionTitle id="together-title">how we'd work together</SectionTitle>
+    <ol class="s-process__steps">
+      {steps.map((s) => (
+        <li class="s-step">
+          <span class="body-s s-step__n">{s.n}</span>
+          <h3 class={`heading-h3 s-step__name ${s.highlight ? 's-step__name--highlight' : ''}`}>{s.name}</h3>
+          <p class="body-m">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- Proof -->
+  <section class="s-proof page-section">
+    <p class="s-proof__text">Designed for government, banking and insurance, so your industry probably isn't scarier.</p>
+    <Button href="/work" type="tertiary" iconRight="fa-solid fa-arrow-right">See the work</Button>
+  </section>
+
+  <ClosingBlock body="Tell me about it. No pricing tables, just a conversation." />
+  <Ticker />
+</Base>
+
+<style>
+  .s-hero {
+    display: flex; flex-direction: column; align-items: center; gap: var(--spacing-2xl);
+    padding-top: var(--page-padding-xl); padding-bottom: var(--page-padding-m); text-align: center;
+  }
+  .s-hero__title { max-width: 900px; color: var(--text-neutral-base); line-height: 1.15; }
+  .s-hero__circled { position: relative; display: inline-block; }
+  .s-hero__circled img { position: absolute; left: 50%; top: 50%; width: 204px; max-width: none; transform: translate(-50%, -50%); opacity: 0.1; pointer-events: none; }
+  .s-hero__lead { max-width: 711px; }
+
+  .s-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--card-gap); align-items: start; padding-top: var(--page-padding-s); padding-bottom: var(--page-padding-m); }
+  .s-card {
+    display: flex; flex-direction: column; gap: var(--spacing-2xl);
+    padding: var(--card-padding);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-24);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+  }
+  .s-card__content { display: flex; flex-direction: column; gap: var(--spacing-2xl); align-items: flex-start; }
+  .s-card__tag { padding: var(--spacing-xs) var(--spacing-m); border-radius: var(--radius-full); font-size: var(--text-size-body-xs); font-weight: 700; text-transform: uppercase; }
+  .s-card__tag--dark { background: var(--surface-primary-base); color: var(--text-on-primary); }
+  .s-card__tag--blush { background: var(--surface-secondary-base); color: var(--text-static-dark); }
+  .s-card__title { color: var(--text-neutral-loud); }
+  .s-card__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-m); }
+  .s-card__items li { display: flex; gap: var(--spacing-s); align-items: flex-start; }
+  .s-card__items li :global(.sparkle) { margin-top: 3px; }
+  .s-card__good { padding-top: var(--spacing-l); border-top: 1px solid var(--border-neutral-silent); font-size: var(--text-size-body-m); }
+  .s-card__good strong { color: var(--text-neutral-loud); }
+
+  .s-process { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-48); padding-block: var(--page-padding-m); }
+  .s-process__steps { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--card-gap); }
+  .s-step { display: flex; flex-direction: column; gap: var(--spacing-s); align-items: flex-start; }
+  .s-step__n { color: var(--text-neutral-silent); }
+  .s-step__name { color: var(--text-neutral-loud); }
+  .s-step__name--highlight { background: var(--surface-tertiary-quiet); padding: var(--spacing-2xs) var(--spacing-xs); border-radius: var(--radius-4); margin-left: calc(-1 * var(--spacing-xs)); }
+
+  .s-proof {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-l);
+    padding-block: var(--page-padding-s);
+    background: var(--surface-neutral-raised);
+    border-block: 1px solid var(--border-neutral-silent);
+  }
+  .s-proof__text { font-size: var(--text-size-body-xl); }
+
+  @media (max-width: 1023px) {
+    .s-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 767px) {
+    .s-hero { padding-top: var(--spacing-60); }
+    .s-process__steps { grid-template-columns: 1fr; gap: var(--spacing-32); }
+    .s-proof { flex-direction: column; align-items: flex-start; }
+  }
+</style>

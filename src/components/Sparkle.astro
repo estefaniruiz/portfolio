@@ -1,8 +1,12 @@
 ---
 // Sparkle (Figma 2490:1466) — decorative, one each side of a section title.
+// Scales proportionally; default 35×32 (list bullets use size 18).
+interface Props { size?: number }
+const { size = 35 } = Astro.props;
+const h = Math.round((size * 32) / 35 * 100) / 100;
 ---
-<img class="sparkle" src="/assets/sparkle.png" width="35" height="32" alt="" aria-hidden="true" onerror="this.style.display='none'" />
+<img class="sparkle" src="/assets/sparkle.svg" width={size} height={h} style={`width:${size}px;height:${h}px`} alt="" aria-hidden="true" onerror="this.style.display='none'" />
 
 <style>
-  .sparkle { width: 35px; height: 32px; flex: none; object-fit: contain; }
+  .sparkle { flex: none; object-fit: contain; }
 </style>
