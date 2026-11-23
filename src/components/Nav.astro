@@ -1,0 +1,106 @@
+---
+// Nav/Desktop (Figma 2442:1008) + Nav/Mobile (2442:1009) + Menu/Mobile open (2442:1027)
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import { nav, site } from '../data/site';
+interface Props { active?: 'Work' | 'Services' | 'About' }
+const { active } = Astro.props;
+---
+<header class="nav">
+  <a href="/" class="nav__logo" aria-label="Estefani Ruiz — home"><Logo /></a>
+
+  <nav class="nav__links" aria-label="Main">
+    {nav.map((item) => (
+      <a href={item.href} class:list={['nav-item', { 'is-active': active === item.label }]} aria-current={active === item.label ? 'page' : undefined}>
+        <span>{item.label}</span>
+      </a>
+    ))}
+    <a href={site.cv} class="nav-item" download>
+      <span>CV <i class="fa-solid fa-download" aria-hidden="true"></i></span>
+    </a>
+    <Button href={`mailto:${site.email}`} iconRight="fa-solid fa-arrow-right">Let's talk</Button>
+  </nav>
+
+  <button class="nav__burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="menu" id="mobile-menu" hidden>
+  <nav aria-label="Mobile">
+    {nav.map((item) => (
+      <a href={item.href} class:list={['nav-item nav-item--mobile', { 'is-active': active === item.label }]}>
+        <span>{item.label}</span>
+      </a>
+    ))}
+    <a href={site.cv} class="nav-item nav-item--mobile" download><span>CV <i class="fa-solid fa-download" aria-hidden="true"></i></span></a>
+    <Button href={`mailto:${site.email}`} iconRight="fa-solid fa-arrow-right">Let's talk</Button>
+  </nav>
+</div>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>('.nav__burger');
+  const menu = document.getElementById('mobile-menu');
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    burger.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    if (menu) menu.hidden = open;
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding-inline: var(--page-padding-l);
+    background: var(--surface-neutral-raised);
+    border-bottom: 1px solid var(--border-neutral-silent);
+  }
+  .nav__logo { width: 147px; color: var(--text-neutral-loud); }
+  .nav__links { display: flex; align-items: center; gap: var(--spacing-32); }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    font-size: var(--text-size-body-m);
+    color: var(--text-neutral-base);
+    text-decoration: none;
+  }
+  /* Selected indicator uses opacity so states never shift layout */
+  .nav-item::after { content: ''; height: 2px; background: var(--surface-secondary-base); opacity: 0; transition: opacity 0.15s; }
+  .nav-item:hover::after { opacity: 0.6; }
+  .nav-item.is-active::after { opacity: 1; }
+  .nav-item i { font-size: 14px; margin-left: 4px; }
+
+  /* Mobile: plain bars, no label or border */
+  .nav__burger { display: none; flex-direction: column; gap: 5px; padding: 10px 4px; background: none; border: 0; cursor: pointer; }
+  .nav__burger span { width: 24px; height: 2px; background: var(--text-neutral-loud); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+  .nav__burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .nav__burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .menu {
+    position: fixed;
+    inset: 60px 0 0 0;
+    z-index: 49;
+    background: var(--surface-neutral-raised);
+    padding: var(--spacing-32) var(--page-padding-l);
+  }
+  .menu nav { display: flex; flex-direction: column; gap: var(--spacing-24); align-items: flex-start; }
+  .nav-item--mobile { font-size: var(--text-size-heading-h3); }
+
+  @media (max-width: 767px) {
+    .nav { height: 60px; }
+    .nav__logo { width: 120px; }
+    .nav__links { display: none; }
+    .nav__burger { display: flex; }
+  }
+</style>

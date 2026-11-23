@@ -1,0 +1,31 @@
+---
+import '@fontsource/schibsted-grotesk/400.css';
+import '@fontsource/schibsted-grotesk/500.css';
+import '@fontsource/schibsted-grotesk/700.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import '@fortawesome/fontawesome-free/css/solid.min.css';
+import '@fortawesome/fontawesome-free/css/brands.min.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import { site } from '../data/site';
+interface Props { title?: string; description?: string; active?: 'Work' | 'Services' | 'About' }
+const { title = site.title, description = site.description, active } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/assets/asterisk.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+    <Nav active={active} />
+    <main id="main"><slot /></main>
+  </body>
+</html>

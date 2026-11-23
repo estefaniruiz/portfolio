@@ -1,0 +1,34 @@
+---
+// Project card (Figma 2442:1058) — title + meta (industry · platform).
+interface Props { title: string; meta: string; href: string; image?: string }
+const { title, meta, href, image } = Astro.props;
+---
+<a class="project-card" href={href}>
+  <div class="project-card__picture">
+    {image && <img src={image} alt="" loading="lazy" />}
+  </div>
+  <div class="project-card__text">
+    <p class="body-m project-card__title">{title}</p>
+    <p class="body-s project-card__meta">{meta}</p>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-12);
+    padding: var(--spacing-12);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-12);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04); }
+  .project-card__picture { height: 190px; border-radius: var(--radius-8); background: var(--bg-page); overflow: hidden; }
+  .project-card__picture img { width: 100%; height: 100%; object-fit: cover; }
+  .project-card__text { display: flex; flex-direction: column; gap: var(--spacing-4); }
+  .project-card__title { color: var(--text-neutral-loud); }
+  .project-card__meta { color: var(--text-neutral-silent); }
+</style>

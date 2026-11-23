@@ -1,0 +1,60 @@
+---
+// Buttons (Figma 1005:4838) — Type: Primary / Secondary / Tertiary, Size: M
+interface Props {
+  href: string;
+  type?: 'primary' | 'secondary' | 'tertiary';
+  iconLeft?: string;   // Font Awesome class, e.g. "fa-brands fa-linkedin"
+  iconRight?: string;  // e.g. "fa-solid fa-arrow-right"
+  external?: boolean;
+  download?: boolean;
+  underline?: boolean;
+}
+const { href, type = 'primary', iconLeft, iconRight, external = false, download = false, underline = false } = Astro.props;
+---
+<a
+  class={`btn btn--${type} ${underline ? 'btn--underline' : ''}`}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  download={download || undefined}
+>
+  {iconLeft && <i class={iconLeft} aria-hidden="true" />}
+  <span><slot /></span>
+  {iconRight && <i class={iconRight} aria-hidden="true" />}
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-10);
+    min-height: 48px;
+    padding: var(--spacing-14) var(--spacing-24);
+    border-radius: var(--radius-8);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: var(--text-size-body-m);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+  .btn i { font-size: 16px; width: 16px; text-align: center; }
+  .btn--primary {
+    background: var(--surface-primary-base);
+    color: var(--text-on-primary);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  .btn--primary:hover { background: var(--surface-primary-base-hover); }
+  .btn--primary:active { background: var(--surface-primary-base-pressed); }
+  .btn--secondary {
+    background: var(--surface-primary-ghost);
+    border: 2px solid var(--border-primary-base);
+    color: var(--text-primary-base);
+  }
+  .btn--secondary:hover { background: var(--surface-primary-ghost-hover); }
+  .btn--secondary:active { background: var(--surface-primary-ghost-pressed); }
+  .btn--tertiary { background: transparent; color: var(--text-primary-base); }
+  .btn--tertiary:hover { background: var(--surface-primary-ghost); }
+  .btn--underline span { text-decoration: underline; text-underline-offset: 3px; }
+</style>

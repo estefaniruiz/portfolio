@@ -1,0 +1,18 @@
+---
+// "separator" title with sparkles, e.g. "my approach", "about me".
+import Sparkle from './Sparkle.astro';
+interface Props { sparkles?: boolean; tone?: 'secondary' | 'primary'; align?: 'center' | 'start'; id?: string }
+const { sparkles = true, tone = 'secondary', align = 'center', id } = Astro.props;
+---
+<div class={`section-title section-title--${align}`}>
+  {sparkles && <Sparkle />}
+  <h2 id={id} class={`heading-h1 section-title__text section-title__text--${tone}`}><slot /></h2>
+  {sparkles && <Sparkle />}
+</div>
+
+<style>
+  .section-title { display: flex; align-items: center; justify-content: center; gap: var(--spacing-28); }
+  .section-title--start { justify-content: flex-start; }
+  .section-title__text--secondary { color: var(--text-secondary-base); }
+  .section-title__text--primary { color: var(--text-primary-base); }
+</style>

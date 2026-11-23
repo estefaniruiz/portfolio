@@ -1,0 +1,37 @@
+---
+// Blush band: "Form meets function * Design meets emotion", scrolling.
+const phrases = ['Form meets function', 'Design meets emotion'];
+const items = Array.from({ length: 4 }, () => phrases).flat();
+---
+<div class="ticker" aria-label="Form meets function. Design meets emotion.">
+  <div class="ticker__track" aria-hidden="true">
+    {[0, 1].map(() => (
+      <div class="ticker__group">
+        {items.map((p) => (
+          <>
+            <span class="highlight-2xl">{p}</span>
+            <img src="/assets/asterisk.svg" width="33" height="32" alt="" />
+          </>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ticker {
+    background: var(--surface-secondary-base);
+    color: var(--text-static-dark);
+    padding-block: var(--spacing-18);
+    overflow: hidden;
+  }
+  .ticker__track { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+  .ticker__group { display: flex; align-items: center; gap: var(--spacing-48); padding-right: var(--spacing-48); }
+  .ticker__group span { white-space: nowrap; }
+  .ticker img { width: 33px; height: 32px; flex: none; }
+  @keyframes ticker { to { transform: translateX(-50%); } }
+  @media (max-width: 767px) {
+    .ticker img { width: 24px; height: 23px; }
+    .ticker__group { gap: var(--spacing-24); padding-right: var(--spacing-24); }
+  }
+</style>

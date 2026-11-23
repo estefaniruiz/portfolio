@@ -1,0 +1,249 @@
+/* Generated from Figma variables by scripts/build-tokens.py. Edit tokens.json, not this file. */
+
+:root, .theme-light {
+  --text-on-primary: #eee9e2;
+  --text-disabled: #898681;
+  --text-primary-base: #1e2b2a;
+  --bg-page: #eee9e2;
+  --surface-neutral-ghost: #1e2b2a1a;
+  --surface-secondary-base: #e1afca;
+  --surface-primary-base: #1e2b2a;
+  --border-neutral-quiet: #c8c3bd;
+  --text-neutral-base: #2b3937;
+  --text-neutral-loud: #1e2b2a;
+  --text-neutral-quiet: #394845;
+  --text-neutral-silent: #475753;
+  --text-disabled-quiet: #a8a49e;
+  --text-secondary-base: #604353;
+  --surface-tertiary-base: #ecdc94;
+  --surface-tertiary-quiet: #f7eec8;
+  --surface-tertiary-loud: #cdbd74;
+  --surface-tertiary-silent: #fbf6e3;
+  --surface-secondary-quiet: #f6e2ec;
+  --surface-secondary-loud: #a0798e;
+  --surface-secondary-silent: #fbf1f5;
+  --surface-primary-silent: #effaf7;
+  --surface-primary-quiet: #e5f0ed;
+  --surface-primary-loud: #394845;
+  --border-neutral-base: #475753;
+  --border-neutral-silent: #1e2b2a33;
+  --border-primary-base: #1e2b2a;
+  --border-primary-quiet: #475753;
+  --border-secondary-base: #a0798e;
+  --border-secondary-quiet: #e1afca80;
+  --surface-primary-base-hover: #2b3937;
+  --surface-primary-base-pressed: #394845;
+  --surface-secondary-base-hover: #c295ae;
+  --surface-secondary-base-pressed: #a0798e;
+  --surface-primary-ghost: #1e2b2a1a;
+  --surface-primary-ghost-hover: #1e2b2a33;
+  --surface-primary-ghost-pressed: #1e2b2a4d;
+  --surface-disabled: #dfdad3;
+  --surface-neutral-raised: #fbf6ef;
+  --text-primary-loud: #0f1b1a;
+  --border-primary-silent: #d2dedb;
+  --border-primary-ghost: #e5f0ed;
+  --text-static-dark: #1e2b2a;
+  --text-neutral-ghost: #fbf6ef;
+  --text-secondary-loud: #482f3d;
+  --border-primary-loud: #0f1b1a;
+  --border-tertiary-base: #cdbd74;
+}
+.theme-dark {
+  --text-on-primary: #0f1b1a;
+  --text-disabled: #65635f;
+  --text-primary-base: #efcfe0;
+  --bg-page: #0f1b1a;
+  --surface-neutral-ghost: #fbf6ef1a;
+  --surface-secondary-base: #e1afca;
+  --surface-primary-base: #e1afca;
+  --border-neutral-quiet: #394845;
+  --text-neutral-base: #eee9e2;
+  --text-neutral-loud: #fbf6ef;
+  --text-neutral-quiet: #d2dedb;
+  --text-neutral-silent: #bbc7c4;
+  --text-disabled-quiet: #4f4d49;
+  --text-secondary-base: #e1afca;
+  --surface-tertiary-base: #ecdc94;
+  --surface-tertiary-quiet: #ecdc944d;
+  --surface-tertiary-loud: #f1e4ad;
+  --surface-tertiary-silent: #ecdc9433;
+  --surface-secondary-quiet: #e1afca4d;
+  --surface-secondary-loud: #e1afca;
+  --surface-secondary-silent: #e1afca33;
+  --surface-primary-silent: #2b3937;
+  --surface-primary-quiet: #2b3937;
+  --surface-primary-loud: #bbc7c4;
+  --border-neutral-base: #9aa8a5;
+  --border-neutral-silent: #fbf6ef33;
+  --border-primary-base: #dfdad3;
+  --border-primary-quiet: #9aa8a5;
+  --border-secondary-base: #e1afca;
+  --border-secondary-quiet: #e1afca80;
+  --surface-primary-base-hover: #efcfe0;
+  --surface-primary-base-pressed: #f6e2ec;
+  --surface-secondary-base-hover: #c295ae;
+  --surface-secondary-base-pressed: #a0798e;
+  --surface-primary-ghost: #fbf6ef1a;
+  --surface-primary-ghost-hover: #fbf6ef33;
+  --surface-primary-ghost-pressed: #fbf6ef4d;
+  --surface-disabled: #2b3937;
+  --surface-neutral-raised: #1e2b2a;
+  --text-primary-loud: #f6e2ec;
+  --border-primary-silent: #394845;
+  --border-primary-ghost: #2b3937;
+  --text-static-dark: #1e2b2a;
+  --text-neutral-ghost: #1e2b2a;
+  --text-secondary-loud: #efcfe0;
+  --border-primary-loud: #fbf6ef;
+  --border-tertiary-base: #ecdc94;
+}
+
+:root {
+  --spacing-0: 0;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+  --spacing-neg-1: -1px;
+  --spacing-neg-24: -24px;
+  --spacing-neg-60: -60px;
+  --radius-4: 4px; --radius-8: 8px; --radius-12: 12px; --radius-16: 16px; --radius-24: 24px; --radius-32: 32px; --radius-full: 999px;
+  --font-primary: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-secondary: 'Instrument Serif', Georgia, serif;
+}
+
+/* Desktop (default) */
+:root {
+  --spacing-2xs: 2px;
+  --spacing-xs: 4px;
+  --spacing-s: 8px;
+  --spacing-m: 12px;
+  --spacing-ml: 14px;
+  --spacing-l: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --page-padding-xl: 96px;
+  --page-padding-l: 72px;
+  --page-padding-m: 60px;
+  --page-padding-s: 40px;
+  --content-inset: 128px;
+  --card-padding: 40px;
+  --card-gap: 24px;
+  --button-gap: 12px;
+  --title-overlap: -24px;
+  --border-overlap: -1px;
+  --hero-title-overlap: -60px;
+  --text-size-heading-h4xl: 128px;
+  --text-size-heading-h3xl: 96px;
+  --text-size-heading-h2xl: 72px;
+  --text-size-heading-hxl: 60px;
+  --text-size-heading-h0: 48px;
+  --text-size-heading-h1: 32px;
+  --text-size-heading-h2: 28px;
+  --text-size-heading-h3: 24px;
+  --text-size-heading-h4: 22px;
+  --text-size-heading-h5: 22px;
+  --text-size-heading-h6: 24px;
+  --text-size-highlight-h2xl: 72px;
+  --text-size-highlight-hxl: 60px;
+  --text-size-highlight-3xl: 40px;
+  --text-size-highlight-2xl: 34px;
+  --text-size-highlight-xl: 22px;
+  --text-size-highlight-l: 18px;
+  --text-size-highlight-m: 16px;
+  --text-size-highlight-s: 14px;
+  --text-size-highlight-xs: 12px;
+  --text-size-body-xl: 20px;
+  --text-size-body-l: 18px;
+  --text-size-body-m: 16px;
+  --text-size-body-s: 14px;
+  --text-size-body-xs: 12px;
+  --text-size-body-2xs: 10px;
+}
+
+/* Laptop */
+@media (max-width: 1279px) {
+ :root {
+  --page-padding-xl: 80px;
+  --page-padding-l: 64px;
+  --page-padding-m: 48px;
+  --content-inset: 96px;
+  --text-size-heading-h4xl: 96px;
+  --text-size-heading-h3xl: 72px;
+ }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+ :root {
+  --page-padding-xl: 48px;
+  --page-padding-l: 48px;
+  --page-padding-m: 40px;
+  --page-padding-s: 32px;
+  --content-inset: 48px;
+  --card-padding: 32px;
+  --card-gap: 20px;
+  --text-size-heading-h4xl: 72px;
+  --text-size-heading-h3xl: 60px;
+  --text-size-heading-h2xl: 60px;
+  --text-size-heading-hxl: 48px;
+  --text-size-heading-h0: 40px;
+  --text-size-heading-h1: 28px;
+  --text-size-heading-h2: 24px;
+  --text-size-heading-h3: 22px;
+  --text-size-heading-h6: 22px;
+  --text-size-highlight-h2xl: 60px;
+  --text-size-highlight-hxl: 48px;
+  --text-size-highlight-3xl: 34px;
+  --text-size-highlight-2xl: 28px;
+  --text-size-highlight-xl: 20px;
+ }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+ :root {
+  --page-padding-xl: 24px;
+  --page-padding-l: 24px;
+  --page-padding-m: 20px;
+  --page-padding-s: 16px;
+  --content-inset: 24px;
+  --card-padding: 20px;
+  --card-gap: 16px;
+  --text-size-heading-h4xl: 48px;
+  --text-size-heading-h3xl: 48px;
+  --text-size-heading-h2xl: 48px;
+  --text-size-heading-hxl: 40px;
+  --text-size-heading-h0: 32px;
+  --text-size-heading-h1: 24px;
+  --text-size-heading-h2: 22px;
+  --text-size-heading-h3: 20px;
+  --text-size-heading-h4: 20px;
+  --text-size-heading-h5: 18px;
+  --text-size-heading-h6: 20px;
+  --text-size-highlight-h2xl: 48px;
+  --text-size-highlight-hxl: 40px;
+  --text-size-highlight-3xl: 28px;
+  --text-size-highlight-2xl: 24px;
+  --text-size-highlight-xl: 18px;
+ }
+}

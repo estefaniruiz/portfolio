@@ -1,0 +1,224 @@
+---
+// Home — Figma "Home v2 — structure fixes" (2440:825)
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Ticker from '../components/Ticker.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Logo from '../components/Logo.astro';
+import { site, projects } from '../data/site';
+
+const approach = [
+  { title: 'I start with the people stuck in the system, not the brief. 🗯️', body: "Before I open Figma, I'm in the room with the people actually living the problem. The brief tells me what they asked for. They tell me what they need." },
+  { title: 'I sit with the mess before I sketch a way out. ⚡', body: 'Rushing to a screen just designs around the wrong problem.' },
+  { title: 'I lean on the room, not just my own read.', body: "I'm not the expert on everything, and I don't try to be, collaboration as the key 🔑 to success." },
+  { title: '🧪 I test past "it works" until the invisible problems surface.', body: "I watch closely enough to catch what users can't put into words." },
+];
+---
+<Base>
+  <!-- Hero -->
+  <section class="hero page-section">
+    <h1 class="highlight-hxl hero__title">Shaping simple solutions for complex problems.</h1>
+    <hr class="hero__rule" />
+    <p class="heading-h2 hero__lead">From redesigning how a bank feels to rethinking how a country processes 86 million travelers — I find the simple path through complicated problems.</p>
+    <div class="hero__actions">
+      <Button href="/work" iconRight="fa-solid fa-arrow-right">See my work</Button>
+      <Button href="/about" type="secondary">About me</Button>
+    </div>
+  </section>
+
+  <Ticker />
+
+  <!-- Intro -->
+  <section class="intro page-section">
+    <div class="intro__card">
+      <div class="intro__heading">
+        <p class="heading-h0">Heyyy! 👋🏽</p>
+        <p class="highlight-hxl intro__name">
+          I’m Estefani
+          <img class="intro__memoji" src="/assets/memoji.png" width="78" height="78" alt="" aria-hidden="true" onerror="this.style.visibility='hidden'" />
+        </p>
+      </div>
+      <div class="intro__text">
+        <p class="heading-h2">Passionate about building the bridge between tech and people. I believe design is human and a way to bring joy to everyday life.</p>
+        <p class="highlight-xl">📍Based in Latin America</p>
+        <div class="intro__actions">
+          <Button href={site.linkedin} type="tertiary" iconLeft="fa-brands fa-linkedin" external underline>Let's Connect!</Button>
+          <Button href={site.cv} type="tertiary" download>Download CV</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My approach -->
+  <section class="approach page-section" aria-labelledby="approach-title">
+    <SectionTitle id="approach-title">my approach</SectionTitle>
+    <div class="approach__grid">
+      {approach.map((a) => (
+        <article class="approach__card">
+          <h3 class="heading-h1">{a.title}</h3>
+          <p class="body-l">{a.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Explore my work -->
+  <section class="work page-section" aria-labelledby="work-title">
+    <SectionTitle sparkles={false} tone="primary" id="work-title">explore my work</SectionTitle>
+    <div class="work__row">
+      {projects.map((p) => <ProjectCard {...p} />)}
+    </div>
+    <Button href="/work" iconRight="fa-solid fa-arrow-right">dive deeper</Button>
+  </section>
+
+  <!-- About me -->
+  <section class="about page-section" aria-labelledby="about-title">
+    <div class="about__watermark" aria-hidden="true"><Logo label="" /></div>
+    <img class="about__polaroid" src="/assets/polaroid.png" alt="Estefani in an open field with mountains behind her" loading="lazy" onerror="this.style.visibility='hidden'" />
+    <div class="about__column">
+      <div class="about__top">
+        <SectionTitle align="start" id="about-title">about me</SectionTitle>
+        <div class="about__social">
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <p class="about__text">
+        <strong>Designer. Traveler. Wellness advocate.</strong><br /><br />
+        I believe we're all creative beings — and that beauty and function aren't opposites, they're partners.
+      </p>
+      <div class="about__actions">
+        <Button href="/about" type="secondary" iconRight="fa-solid fa-arrow-right">get to know me</Button>
+        <Button href={`mailto:${site.email}`} type="secondary" iconRight="fa-solid fa-envelope">Contact</Button>
+      </div>
+    </div>
+    <img class="about__collage" src="/assets/collage.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.visibility='hidden'" />
+  </section>
+
+  <Ticker />
+</Base>
+
+<style>
+  /* Hero */
+  .hero {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-48);
+    text-align: center;
+    padding-block: var(--page-padding-s);
+  }
+  .hero__title { max-width: 844px; color: var(--text-neutral-base); }
+  .hero__rule { width: 100%; border: 0; border-top: 1px solid var(--border-neutral-base); margin: 0; }
+  .hero__lead { max-width: 711px; }
+  .hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-2xl); }
+
+  /* Intro */
+  .intro { padding-top: var(--page-padding-s); }
+  .intro__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3xl);
+    padding: var(--card-padding);
+    background: var(--surface-neutral-ghost);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-24);
+    text-align: center;
+  }
+  .intro__heading { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-10); }
+  .intro__name { position: relative; color: var(--text-secondary-loud); }
+  .intro__memoji {
+    position: absolute;
+    left: calc(100% + 16px);
+    top: -12px;
+    width: 78px;
+    height: 78px;
+    transform: rotate(16.24deg);
+    filter: drop-shadow(0 10px 7.5px rgba(0, 0, 0, 0.08)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.04));
+  }
+  .intro__text { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-s); max-width: 711px; }
+  .intro__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--button-gap); }
+
+  /* Approach */
+  .approach, .work { display: flex; flex-direction: column; gap: var(--spacing-28); padding-block: var(--page-padding-s); }
+  .approach__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-28); align-items: start; }
+  .approach__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-10);
+    min-height: 216px;
+    padding: var(--spacing-60) var(--card-padding);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-24);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+  }
+  .approach__card:nth-child(2), .approach__card:nth-child(3) { align-self: stretch; }
+
+  /* Work */
+  .work { align-items: center; }
+  .work__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-xl); width: 100%; }
+
+  /* About */
+  .about {
+    position: relative;
+    display: grid;
+    grid-template-columns: 330px minmax(0, 686px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-40);
+    min-height: 467px;
+    padding-bottom: var(--page-padding-s);
+    overflow: hidden;
+  }
+  .about__watermark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(1199px, 100%);
+    transform: translate(-50%, -50%);
+    color: var(--surface-neutral-raised);
+    z-index: -1;
+  }
+  .about__polaroid { width: 330px; height: auto; transform: rotate(-5.8deg); }
+  .about__column { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+  .about__top { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-28); }
+  .about__social {
+    display: flex;
+    gap: var(--spacing-3xl);
+    padding: var(--spacing-m) var(--spacing-l);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-8);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+  }
+  .about__social a { font-size: 18px; color: var(--text-neutral-base); text-decoration: none; }
+  .about__text { font-size: var(--text-size-heading-h3); line-height: 1.35; }
+  .about__actions { display: flex; flex-wrap: wrap; gap: var(--spacing-2xl); }
+  .about__collage { position: absolute; right: 2%; bottom: -40px; width: 230px; height: auto; pointer-events: none; }
+
+  /* Laptop / Tablet */
+  @media (max-width: 1023px) {
+    .work__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .about { grid-template-columns: 260px minmax(0, 1fr); }
+    .about__polaroid { width: 260px; }
+    .about__collage { display: none; }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .hero { min-height: auto; padding-block: var(--spacing-60); gap: var(--spacing-32); }
+    .hero__actions :global(.btn) { flex: 1 1 140px; }
+    .intro__memoji { width: 52px; height: 52px; left: calc(100% + 6px); top: -6px; }
+    .approach__grid, .work__row { grid-template-columns: 1fr; }
+    .approach__card { min-height: 0; padding: var(--card-padding); }
+    .about { grid-template-columns: 1fr; justify-items: center; padding-top: var(--spacing-32); }
+    .about__polaroid { width: min(260px, 80%); }
+    .about__top { flex-wrap: wrap; }
+  }
+</style>

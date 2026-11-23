@@ -1,0 +1,12 @@
+---
+// Full Logo (Figma 6:1330). Inlined so it takes the text color.
+import logo from '../assets/logo.svg?raw';
+interface Props { class?: string; label?: string }
+const { class: cls = '', label = 'Estefani Ruiz' } = Astro.props;
+---
+<span class={`logo ${cls}`} role="img" aria-label={label} set:html={logo} />
+
+<style>
+  .logo { display: inline-block; color: inherit; line-height: 0; }
+  .logo :global(svg) { width: 100%; height: auto; }
+</style>
