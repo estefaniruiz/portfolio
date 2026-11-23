@@ -1,0 +1,13 @@
+---
+// One page per file in src/content/projects. Projects without a file
+// fall through to the under-construction page.
+import { getCollection } from 'astro:content';
+import CaseStudy from '../../layouts/CaseStudy.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { data: p.data } }));
+}
+const { data } = Astro.props;
+---
+<CaseStudy data={data} />

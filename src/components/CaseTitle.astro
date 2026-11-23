@@ -1,0 +1,22 @@
+---
+// Section title (Figma 2546:32): Inline = blob before the text (title-overlap),
+// Centered = blob behind centered text. Mobile always centers.
+interface Props { style?: 'inline' | 'centered'; id?: string }
+const { style = 'inline', id } = Astro.props;
+---
+<div class={`case-title case-title--${style}`}>
+  <img class="case-title__blob" src="/assets/fat-asterisk.svg" alt="" aria-hidden="true" />
+  <h2 id={id} class="heading-h0 case-title__text"><slot /></h2>
+</div>
+
+<style>
+  .case-title { display: flex; align-items: center; justify-content: center; position: relative; isolation: isolate; }
+  .case-title__text { color: var(--text-neutral-base); position: relative; text-align: center; }
+  .case-title--inline { gap: var(--title-overlap); }
+  .case-title--inline .case-title__blob { width: 51px; height: 50px; flex: none; position: relative; z-index: -1; }
+  .case-title--centered .case-title__blob { position: absolute; left: 50%; top: 50%; width: 82px; height: 80px; transform: translate(-50%, -50%); z-index: -1; }
+  @media (max-width: 767px) {
+    .case-title--inline { flex-direction: column; gap: var(--title-overlap); }
+    .case-title--inline .case-title__blob { width: 44px; height: 43px; }
+  }
+</style>

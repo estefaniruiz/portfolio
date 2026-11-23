@@ -1,0 +1,351 @@
+---
+// Case study template — built from Figma "Case study v2 (Migration System)" (2442:1659).
+// Every project page uses this layout; content comes from src/content/projects/<slug>.yaml.
+// Change the layout here once and every case study updates.
+import Base from './Base.astro';
+import CaseTitle from '../components/CaseTitle.astro';
+import Icon from '../components/Icon.astro';
+import ClosingBlock from '../components/ClosingBlock.astro';
+import Ticker from '../components/Ticker.astro';
+import { inline, paragraphs } from '../lib/rich';
+
+const { data } = Astro.props as { data: any };
+const { hero, summary, challenge, users, role, solution, result, next, seo } = data;
+const hide = "this.style.visibility='hidden'";
+
+const kicker = hero.underline
+  ? inline(hero.kicker).replace(hero.underline, `<span class="pink-underline">${hero.underline}</span>`)
+  : inline(hero.kicker);
+
+const summaryCards = [
+  { icon: 'spiral', title: 'The problem', body: summary.problem },
+  { icon: 'star', title: 'My role', body: summary.role },
+  { icon: 'code', title: 'What we built:', body: summary.built },
+  { icon: 'puzzle', title: 'The outcome:', body: summary.outcome },
+];
+---
+<Base title={seo.title} description={seo.description} active="Work">
+  <!-- 1 · Hero (dark mode) -->
+  <section class="cs-hero theme-dark dark-band page-section">
+    <div class="cs-hero__card">
+      <div class="cs-hero__content">
+        <p class="heading-h2 cs-hero__kicker" set:html={kicker} />
+        <h1 class="cs-hero__title">{hero.title}</h1>
+        <ul class="cs-tags">{hero.tags.map((t: string) => <li>{t}</li>)}</ul>
+        <ul class="cs-facts">
+          {hero.facts.map((f: any) => <li><span aria-hidden="true">{f.icon}</span> <strong>{f.label}</strong> {f.value}</li>)}
+        </ul>
+      </div>
+      <img class="cs-hero__image" src={hero.image} alt={hero.imageAlt} onerror={hide} />
+    </div>
+  </section>
+
+  <!-- 2 · Project summary (dark mode) -->
+  <section class="cs-summary theme-dark dark-band page-section" aria-labelledby="summary-title">
+    <div class="cs-summary__card">
+      <div class="cs-summary__top">
+        <img class="cs-summary__image" src={summary.image} alt={summary.imageAlt} loading="lazy" onerror={hide} />
+        <div class="cs-summary__header">
+          <p class="body-l bold cs-summary__label">Project summary</p>
+          <h2 id="summary-title" class="heading-h1">{summary.name}</h2>
+          <p class="cs-summary__subtitle">{summary.subtitle}</p>
+        </div>
+      </div>
+      <div class="cs-summary__grid">
+        {summaryCards.map((c) => (
+          <div class="cs-summary__cell">
+            <span class="cs-summary__icon"><Icon name={c.icon} size={28} /></span>
+            <p class="body-l bold">{c.title}</p>
+            <p class="cs-summary__body">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · The real challenge -->
+  <section class="cs-section cs-section--xl page-section" aria-labelledby="challenge-title">
+    <CaseTitle id="challenge-title">the real challenge</CaseTitle>
+    <div class="cs-grid-2 cs-challenge">
+      {challenge.cards.map((c: any) => (
+        <article class="cs-card cs-card--tall">
+          <h3 class="heading-h1">{c.title}</h3>
+          <p class="body-l" set:html={inline(c.body)} />
+        </article>
+      ))}
+      {challenge.sticker && <img class="cs-challenge__sticker" src={challenge.sticker} alt={challenge.stickerAlt || ''} loading="lazy" onerror={hide} />}
+    </div>
+  </section>
+
+  <!-- 4 · Meeting the users (optional) -->
+  {users && (
+    <section class="cs-section cs-section--xl cs-band page-section" aria-labelledby="users-title">
+      <CaseTitle style="centered" id="users-title">meeting the users</CaseTitle>
+      <p class="body-l cs-center">{users.intro}</p>
+      <div class="cs-users">
+        {users.people.map((u: any) => (
+          <article class="cs-user">
+            <div class="cs-user__picture">
+              <img src={u.image} alt={u.imageAlt} loading="lazy" onerror={hide} />
+              {u.credit && <span class="cs-user__credit">{u.credit}</span>}
+            </div>
+            <div class="cs-user__body">
+              <p class="heading-h3 cs-user__name"><Icon name="single-user" size={32} />{u.name}</p>
+              <p class="body-l">{u.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      {users.outro && <p class="body-l cs-center">{users.outro}</p>}
+    </section>
+  )}
+
+  <!-- 5 · My role -->
+  <section class="cs-section cs-section--xl cs-role page-section" aria-labelledby="role-title">
+    <CaseTitle id="role-title">my role and how i approached it...</CaseTitle>
+    <div class="cs-role__intro">
+      <img class="cs-role__image" src={role.image} alt={role.imageAlt} loading="lazy" onerror={hide} />
+      <div class="body-l cs-rich" set:html={paragraphs(role.text)} />
+    </div>
+    <ul class="cs-skills">
+      {role.skills.map((s: any) => <li class="cs-skill"><Icon name={s.icon} size={32} /><span>{s.label}</span></li>)}
+    </ul>
+    {role.gallery.map((g: any) => (
+      <img class="cs-gallery" style={g.ratio ? `aspect-ratio:${g.ratio}` : ''} src={g.image} alt={g.alt} loading="lazy" onerror={hide} />
+    ))}
+  </section>
+
+  <!-- 6 · The solution -->
+  <section class="cs-section cs-band page-section" aria-labelledby="solution-title">
+    <CaseTitle style="centered" id="solution-title">💡 the solution</CaseTitle>
+    <p class="highlight-2xl-regular cs-statement">{solution.statement}</p>
+    <div class="cs-grid-2">
+      {solution.groups.map((g: any) => (
+        <article class="cs-card">
+          <h3 class="heading-h1">{g.title}</h3>
+          <p class="body-l" set:html={inline(g.body)} />
+        </article>
+      ))}
+    </div>
+    {solution.features.length > 0 && (
+      <div class="cs-grid-2">
+        {solution.features.map((f: any) => (
+          <article class="cs-card cs-feature">
+            <img class="cs-feature__image" src={f.image} alt={f.imageAlt} loading="lazy" onerror={hide} />
+            <p class="cs-feature__eyebrow">⭐ feature ⭐</p>
+            <h3 class="heading-h1">{f.title}</h3>
+            <p class="body-l" set:html={inline(f.body)} />
+          </article>
+        ))}
+      </div>
+    )}
+    {solution.showcase && <img class="cs-showcase" src={solution.showcase.image} alt={solution.showcase.alt} loading="lazy" onerror={hide} />}
+    {solution.learnings && (
+      <article class="cs-card cs-learnings">
+        <div class="cs-center">
+          <h3 class="heading-h4 bold">{solution.learnings.title}</h3>
+          <p class="body-xl">{solution.learnings.intro}</p>
+        </div>
+        <div class="cs-grid-2 cs-grid-2--tight">
+          {solution.learnings.items.map((l: any) => (
+            <div class="cs-learning">
+              <p class="body-l bold cs-label"><Icon name="goal" size={20} />{l.label}</p>
+              <p class="body-xl" set:html={inline(l.body)} />
+            </div>
+          ))}
+        </div>
+      </article>
+    )}
+  </section>
+
+  <!-- 7 · The result -->
+  <section class="cs-section page-section cs-result" aria-labelledby="result-title">
+    <CaseTitle style="centered" id="result-title">💡 the result</CaseTitle>
+    <article class="cs-card cs-result__card">
+      <h3 class="highlight-2xl-regular">{result.title}</h3>
+      <p class="body-xl">{result.body}</p>
+      {result.image && <img class="cs-result__image" src={result.image} alt={result.imageAlt || ''} loading="lazy" onerror={hide} />}
+      {result.quote && (
+        <figure class="cs-quote">
+          <blockquote class="highlight-2xl-regular">{result.quote.text}</blockquote>
+          <figcaption class="body-xl">{result.quote.author}</figcaption>
+        </figure>
+      )}
+      {result.note && <p class="body-xs cs-note">{result.note}</p>}
+    </article>
+    <article class="cs-takeaway" style={result.takeaway.image ? `--takeaway-bg:url('${result.takeaway.image}')` : ''}>
+      <p class="body-l bold">🎨 My takeaway</p>
+      <hr />
+      <p class="body-l bold">{result.takeaway.text}</p>
+    </article>
+  </section>
+
+  <ClosingBlock showNext={!!next} nextLabel={next?.label} nextHref={next?.href} />
+  <Ticker />
+</Base>
+
+<style>
+  /* ---------- Shared ---------- */
+  .highlight-2xl-regular { font-family: var(--font-secondary); font-size: var(--text-size-highlight-2xl); line-height: 1.15; }
+  .heading-h4 { font-size: var(--text-size-heading-h4); }
+  .body-xl { font-size: var(--text-size-body-xl); line-height: 1.4; }
+  .body-xs { font-size: var(--text-size-body-xs); line-height: 1.4; }
+  .cs-center { text-align: center; max-width: 900px; margin-inline: auto; }
+  .cs-section { display: flex; flex-direction: column; gap: var(--spacing-36); padding-block: var(--spacing-48); }
+  .cs-section--xl { padding-inline: var(--page-padding-xl); }
+  .cs-band { background: var(--surface-neutral-ghost); }
+  .cs-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--card-gap); position: relative; }
+  .cs-grid-2--tight { gap: var(--card-gap); }
+  .cs-card {
+    display: flex; flex-direction: column; justify-content: center; gap: var(--spacing-10);
+    padding: var(--spacing-48) var(--card-padding);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-24);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+    color: var(--text-neutral-base);
+  }
+  .cs-card--tall { min-height: 216px; padding-block: var(--spacing-60); }
+
+  /* Dark bands (hero + summary) */
+  .dark-band { position: relative; background: var(--bg-page); color: var(--text-neutral-base); }
+  .dark-band::before { content: ''; position: absolute; inset: 0; background: url('/assets/texture.png'); background-size: 186px; opacity: 0.6; pointer-events: none; }
+  .dark-band > * { position: relative; }
+
+  /* ---------- 1 · Hero ---------- */
+  .cs-hero { padding-block: var(--page-padding-s); }
+  .cs-hero__card {
+    position: relative; display: flex; align-items: center; min-height: 390px;
+    padding: var(--card-padding);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-24);
+  }
+  .cs-hero__content { display: flex; flex-direction: column; gap: var(--spacing-2xl); width: 438px; max-width: 100%; position: relative; z-index: 1; }
+  .cs-hero__kicker { margin-bottom: -16px; }
+  .cs-hero__kicker :global(.pink-underline) { position: relative; white-space: nowrap; }
+  .cs-hero__kicker :global(.pink-underline)::after {
+    content: ''; position: absolute; left: -30%; right: -4%; bottom: -0.05em; height: 0.5em;
+    background: url('/assets/underline-pink.svg') center / 100% 100% no-repeat;
+  }
+  .cs-hero__title { font-family: var(--font-secondary); font-size: var(--text-size-highlight-3xl); line-height: 1.2; font-weight: 400; }
+  .cs-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--spacing-s); }
+  .cs-tags li { padding: var(--spacing-xs) var(--spacing-s); border-radius: var(--radius-4); background: var(--surface-neutral-raised); font-size: var(--text-size-body-xs); }
+  .cs-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-s); font-weight: 500; }
+  .cs-facts strong { font-weight: 700; }
+  .cs-hero__image {
+    position: absolute; left: 50%; top: 50%; transform: translateY(-50%);
+    width: 48%; max-width: 506px; height: auto; border-radius: var(--radius-16);
+  }
+
+  /* ---------- 2 · Summary ---------- */
+  .cs-summary { padding-bottom: var(--page-padding-s); }
+  .cs-summary__card { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--surface-primary-ghost-hover); border-radius: var(--radius-24); overflow: hidden; }
+  .cs-summary__top { position: relative; border-bottom: 1px solid var(--surface-primary-ghost-hover); }
+  .cs-summary__image { display: block; width: 100%; height: 456px; object-fit: cover; }
+  .cs-summary__header {
+    position: absolute; inset: 0 0 auto 0;
+    display: flex; flex-direction: column; gap: var(--spacing-10);
+    padding: var(--spacing-40);
+    background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-neutral-silent);
+  }
+  .cs-summary__label { color: var(--text-secondary-base); }
+  .cs-summary__subtitle { font-family: var(--font-secondary); font-style: italic; font-size: var(--text-size-highlight-l); }
+  .cs-summary__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-summary__cell {
+    display: flex; flex-direction: column; justify-content: center; gap: var(--spacing-m);
+    min-height: 216px; padding: var(--spacing-60) var(--spacing-40);
+    border: 1px solid var(--surface-primary-ghost-hover); margin: -0.5px;
+  }
+  .cs-summary__icon {
+    display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+    background: var(--surface-primary-ghost); border: 0.5px solid var(--border-primary-quiet); border-radius: var(--radius-4);
+  }
+  .cs-summary__body { font-size: var(--text-size-body-xl); line-height: 1.35; }
+
+  /* ---------- 3 · Challenge ---------- */
+  .cs-challenge__sticker {
+    position: absolute; left: -37px; top: 50%; width: 125px; height: 100px; object-fit: cover;
+    border: 1px solid var(--border-neutral-silent); border-radius: var(--radius-16);
+    transform: translateY(-60%) rotate(-10.98deg); z-index: 2;
+  }
+
+  /* ---------- 4 · Users ---------- */
+  .cs-users { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-l); }
+  .cs-user { display: flex; flex-direction: column; border-radius: var(--radius-14, 14px); overflow: hidden; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04); background: var(--surface-neutral-raised); }
+  .cs-user__picture { position: relative; height: 220px; background: var(--bg-page); }
+  .cs-user__picture img { width: 100%; height: 100%; object-fit: cover; }
+  .cs-user__credit { position: absolute; left: 13px; bottom: 14px; padding: 0 var(--spacing-2xs); background: rgba(0, 0, 0, 0.4); color: var(--text-on-primary); font-size: var(--text-size-body-xs); }
+  .cs-user__body { display: flex; flex-direction: column; gap: var(--spacing-2xl); padding: var(--spacing-2xl); flex: 1; }
+  .cs-user__name { display: flex; align-items: center; gap: var(--spacing-m); color: var(--text-neutral-loud); }
+
+  /* ---------- 5 · Role ---------- */
+  .cs-role { gap: var(--spacing-xl); padding-top: var(--spacing-32); padding-bottom: var(--spacing-80); }
+  .cs-role__intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-xl); align-items: stretch; }
+  .cs-role__image { width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: var(--radius-16); background: var(--bg-page); }
+  .cs-rich { display: flex; flex-direction: column; gap: 1.2em; }
+  .cs-rich :global(strong) { font-weight: 700; }
+  .cs-skills { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--spacing-xl); }
+  .cs-skill {
+    display: flex; flex-direction: column; gap: var(--spacing-12); padding: var(--spacing-l);
+    background: var(--surface-secondary-silent); border: 1px solid var(--border-secondary-base); border-radius: var(--radius-12);
+    color: var(--text-secondary-base); font-size: var(--text-size-body-xl);
+  }
+  .cs-skill span { color: var(--text-neutral-base); }
+  .cs-gallery { width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-16); background: var(--bg-page); }
+
+  /* ---------- 6 · Solution ---------- */
+  .cs-statement { max-width: 692px; margin-inline: auto; text-align: center; color: var(--text-neutral-base); }
+  .cs-feature { justify-content: flex-start; padding: var(--spacing-xl); gap: var(--spacing-10); }
+  .cs-feature__image { width: 100%; height: 489px; object-fit: cover; object-position: left top; border: 1px solid var(--surface-primary-quiet); border-radius: var(--radius-16); margin-bottom: var(--spacing-22, 22px); background: var(--bg-page); }
+  .cs-feature__eyebrow { font-family: var(--font-secondary); font-style: italic; font-size: var(--text-size-highlight-m); }
+  .cs-showcase { width: 100%; aspect-ratio: 1050 / 500; object-fit: cover; border: 1px solid var(--surface-primary-quiet); border-radius: var(--radius-16); box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04); background: var(--bg-page); }
+  .cs-learnings { gap: var(--spacing-xl); }
+  .cs-learning { display: flex; flex-direction: column; gap: var(--spacing-l); padding: var(--spacing-m); background: var(--surface-neutral-ghost); border-radius: var(--radius-12); }
+  .cs-label { display: flex; align-items: center; gap: var(--spacing-m); color: var(--text-neutral-base); }
+
+  /* ---------- 7 · Result ---------- */
+  .cs-result { padding: var(--page-padding-l); gap: var(--spacing-32); }
+  .cs-result__card { align-items: center; text-align: center; gap: var(--spacing-l); padding: var(--spacing-28) var(--spacing-32); }
+  .cs-result__card > p.body-xl { max-width: 960px; }
+  .cs-result__image { width: 100%; aspect-ratio: 998 / 491; object-fit: contain; border-radius: var(--radius-16); }
+  .cs-quote { margin: 0; display: flex; flex-direction: column; gap: var(--spacing-l); max-width: 692px; }
+  .cs-quote blockquote { margin: 0; }
+  .cs-note { max-width: 644px; }
+  .cs-takeaway {
+    position: relative; overflow: hidden; isolation: isolate;
+    display: flex; flex-direction: column; align-items: center; gap: var(--spacing-l); text-align: center;
+    padding: var(--spacing-72) var(--content-inset);
+    border: 1px solid var(--border-neutral-silent); border-radius: var(--radius-24);
+    background: var(--surface-primary-base) var(--takeaway-bg, none) center / cover no-repeat;
+    color: var(--text-on-primary);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+  }
+  .cs-takeaway::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: -1; }
+  .cs-takeaway hr { width: 90px; border: 0; border-top: 1px solid currentColor; margin: 0; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1023px) {
+    .cs-hero__card { flex-direction: column; align-items: flex-start; gap: var(--spacing-2xl); }
+    .cs-hero__image { position: static; transform: none; width: 100%; max-width: 560px; }
+    .cs-users { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cs-skills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cs-challenge__sticker { display: none; }
+  }
+  @media (max-width: 767px) {
+    .cs-section { gap: var(--spacing-24); padding-block: var(--spacing-40); }
+    .cs-grid-2, .cs-users, .cs-summary__grid, .cs-role__intro { grid-template-columns: 1fr; }
+    .cs-summary__image { height: 300px; }
+    .cs-summary__header { position: static; }
+    .cs-summary__cell { min-height: 0; padding: var(--spacing-32) var(--spacing-20); }
+    .cs-card, .cs-card--tall { min-height: 0; padding: var(--card-padding); }
+    .cs-skills { display: flex; flex-wrap: wrap; gap: var(--spacing-s); }
+    .cs-skill { flex: 1 1 140px; }
+    .cs-role__image { min-height: 0; max-height: 300px; }
+    .cs-feature__image { height: auto; max-height: 300px; aspect-ratio: 4 / 3; }
+    .cs-result { padding-inline: var(--page-padding-l); padding-block: var(--spacing-40); }
+    .cs-takeaway { padding: var(--spacing-48) var(--spacing-24); }
+    .cs-hero__kicker { margin-bottom: -8px; }
+  }
+</style>

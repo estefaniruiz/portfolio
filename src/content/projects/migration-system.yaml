@@ -1,0 +1,127 @@
+# Case study: Integrated Migration Management System
+# Figma: "Case study v2 (Migration System)" (2442:1659)
+# Text supports **bold** and *italic*. A blank line starts a new paragraph.
+# Images live in /public/assets/projects/migration-system/
+
+seo:
+  title: Transforming Migration Systems — Estefani Ruiz
+  description: How I led UX/UI for El Salvador's new migration system, used daily by officers processing 86 million crossings a year.
+
+hero:
+  kicker: "A Journey Through Borders:"
+  underline: Borders
+  title: Transforming Migration Systems
+  tags: [GovTech, WebApp, Design Systems]
+  facts:
+    - { icon: "👤", label: "Client:", value: "El Salvador’s Ministry of Justice" }
+    - { icon: "⚡", label: "Design Team:", value: "Estefani Ruiz (Lead UX) & Gabriela José" }
+    - { icon: "⚒️", label: "Tools:", value: "Figma, Jira, Miro" }
+    - { icon: "⚒️", label: "Methodology:", value: "Scrum, Lean UX" }
+  image: /assets/projects/migration-system/hero.png
+  imageAlt: The migration system on a laptop, a tablet and a phone
+
+summary:
+  name: Integrated Migration Management System
+  subtitle: Modernizing how El Salvador processes 86 million border crossings a year
+  image: /assets/projects/migration-system/summary.jpg
+  imageAlt: Screens from the migration system
+  problem: A 12-year-old legacy system was slowing down migration officers and creating long queues for travelers at every border — air, land, and sea.
+  role: Lead UX/UI — including stepping in to help shape the product itself after the project started without a Product Owner.
+  built: A cloud-based system that streamlined officers' daily workflows and introduced a traveler-friendly pre-check-in experience.
+  outcome: A faster, more reliable process for officers and travelers alike — "more functional, and the design looks so much better," as one migration officer put it.
+
+challenge:
+  cards:
+    - title: You've just stepped off a long flight...
+      body: Exhausted, ready to get through migration as fast as possible — but you're stuck in a queue that isn't moving. 😭
+    - title: "Behind the counter, it's not much better:"
+      body: Officers are fighting a system that needs five steps for what should take two, sometimes struggling just to read a passport.
+    - title: An antiquated, on-premise system...
+      body: That was daily life at El Salvador's General Directorate of Migration and Immigration (DGME), processing roughly 86 million crossings a year across air, land, and sea borders.
+    - title: Everyone was losing time. Nobody had a good workaround.
+      body: So... we got to work ⚡
+  sticker: /assets/projects/migration-system/challenge-sticker.jpg
+  stickerAlt: An officer's screen at a migration counter
+
+users:
+  intro: "The DGME wasn't one user group — it was several, each with their own version of the same broken system:"
+  people:
+    - name: Passenger Analyst
+      body: Trying to clear alerts and flag restricted travelers on a platform that duplicated traveler records and made search painfully slow
+      image: /assets/projects/migration-system/user-analyst.jpg
+      imageAlt: A passenger analyst pointing at the old system on screen
+      credit: Image by Estefani Ruiz
+    - name: Migration Officer
+      body: Doing the actual face-to-face processing — hit hardest by unnecessary steps and manual passport entry whenever the OCR failed
+      image: /assets/projects/migration-system/user-officer.jpg
+      imageAlt: Migration counters at the airport
+      credit: Image by Migración y Extranjería de El Salvador
+    - name: Traveler
+      body: Local and international, who just wanted to get through the border and get on with their trip
+      image: /assets/projects/migration-system/user-traveler.jpg
+      imageAlt: A traveler on a plane
+      credit: Image by Estefani Ruiz
+  outro: Understanding all three was the only way to design something that would actually hold up in a live border crossing, not just in a prototype demo.
+
+role:
+  image: /assets/projects/migration-system/role.jpg
+  imageAlt: A migration counter window
+  text: |
+    I came in as **Lead UX/UI** — but early on, the project didn't have a Product Owner. Rather than wait for that gap to get filled, I worked directly with our Scrum Master to help shape what the product actually needed to be, grounding every decision in the field research we were running with officers.
+
+    We worked in SCRUM, moving in fast, iterative loops — **research, design, test, repeat** — because the alternative (waiting for a "finished" brief) wasn't realistic for a system this large and this used. I sketched the first rounds of low-fidelity wireframes myself, then partnered with my co-designer Gaby to bring them to high fidelity for client and developer review. Every round of testing reshaped the next.
+  skills:
+    - { icon: lupa, label: user research }
+    - { icon: goal, label: problem solving }
+    - { icon: dotted-square, label: wireframing }
+    - { icon: spiral-outline, label: prototyping }
+    - { icon: multiple-users, label: user testing }
+  gallery:
+    - { image: /assets/projects/migration-system/wireframes.png, alt: Hand-drawn low-fidelity wireframes of the flights screens, ratio: "982 / 333" }
+    - { image: /assets/projects/migration-system/figma-file.jpg, alt: The Figma file with the high-fidelity screens, ratio: "1002 / 489" }
+
+solution:
+  statement: One integrated system that gave officers everything they needed in one place, and gave travelers a way to skip most of the wait entirely.
+  groups:
+    - title: 👮🏽 Officers...
+      body: got full visibility into flight and passenger details — including alerts and, for Salvadoran minors, family and guardian documentation — without digging through multiple screens.
+    - title: ✈️ Travelers
+      body: got a new pre-check-in flow that moved most of the process before they ever reached the counter.
+  features:
+    - title: Clear view of all upcoming flights ✈️ ...
+      body: Displaying key details like airline, flight number, and any alerts. It also gave migration officers a complete overview of every passenger on the flight, keeping them informed at every step.
+      image: /assets/projects/migration-system/feature-flights.png
+      imageAlt: Flight details screen
+    - title: Easy access to passenger’s details...
+      body: Document number, nationality, and, in the case of Salvadoran minors, critical family information like parents, legal guardians, and supporting documents. Everything they needed was right at their fingertips, streamlining the process even further.
+      image: /assets/projects/migration-system/feature-passenger.png
+      imageAlt: Passenger record with family and guardian details
+  showcase:
+    image: /assets/projects/migration-system/showcase.jpg
+    alt: The migration system on a laptop
+  learnings:
+    title: What we learned along the way...
+    intro: Testing surfaced two things we hadn't planned for.
+    items:
+      - label: Field states
+        body: Officers, who work almost entirely by keyboard, were missing which field was active because the highlight color was too subtle — a small fix (a brighter, clearer state) that changed how fast they could move through a form.
+      - label: Visas
+        body: We hadn't originally accounted for travelers who needed a visa — so we built a dedicated flow for that case, instead of leaving them stuck in the general path.
+
+result:
+  title: A Modern Migration System
+  body: "This shipped as a live, cloud-based replacement for a system that had gone unchanged for over a decade — used daily by officers processing millions of travelers a year. As one migration officer, Kathy, put it:"
+  image: /assets/projects/migration-system/result.png
+  imageAlt: The final system on laptop, tablet and phone
+  quote:
+    text: “The new system is a big improvement from the old one, it’s more functional and the design looks so much better”
+    author: Kathy, Migration Officer
+  note: (As with most agency work, we didn't have a formal post-launch measurement window — but the shift from a 5-step, error-prone process to a streamlined one was consistently confirmed in testing with the officers who'd use it every day.)
+  takeaway:
+    text: >-
+      This was one of the most demanding projects I've worked on — not because of the screens, but because of everything underneath them: understanding how a border actually functions, what officers deal with hour to hour, and what it means to design for millions of people who'll never know your name but will feel the difference every time they cross.
+    image: /assets/projects/migration-system/takeaway.jpg
+
+next:
+  label: "Next project: WebApp Viajeros"
+  href: /work/webapp-viajeros
