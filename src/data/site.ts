@@ -4,9 +4,9 @@ export const site = {
   title: 'Estefani Ruiz — UX/UI & Product Designer',
   description:
     'Product designer shaping simple solutions for complex problems — from banking to how a country processes 86 million travelers.',
-  email: 'hello@example.com', // TODO: your email
+  email: 'estefaniruiz.design@gmail.com',
   linkedin: 'https://www.linkedin.com/in/estefaniruiz/',
-  instagram: 'https://www.instagram.com/', // TODO: your Instagram
+  instagram: 'https://www.instagram.com/estefaniruiz/',
   cv: '/cv.pdf', // drop your CV into /public as cv.pdf
 };
 
