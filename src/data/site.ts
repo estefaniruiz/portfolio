@@ -17,7 +17,7 @@ export const nav = [
 ];
 
 export const projects = [
-  { title: 'Transforming Migration Systems', meta: 'Government · Web app', href: '/work/migration-system', image: '' },
-  { title: 'Making Banking Effortless', meta: 'Fintech · Mobile app', href: '/work/banco-azul', image: '' },
-  { title: 'Building an Insurance Ecosystem from Scratch', meta: 'Insurance · Web platform', href: '/work/protege-seguros', image: '' },
+  { title: 'Transforming Migration Systems', meta: 'Government · Web app', href: '/work/migration-system', image: '/assets/project-migration.jpg' },
+  { title: 'Making Banking Effortless', meta: 'Fintech · Mobile app', href: '/work/banco-azul', image: '/assets/project-banco-azul.jpg' },
+  { title: 'Building an Insurance Ecosystem from Scratch', meta: 'Insurance · Web platform', href: '/work/protege-seguros', image: '/assets/project-protege.jpg' },
 ];

@@ -5,7 +5,7 @@ const { title, meta, href, image } = Astro.props;
 ---
 <a class="project-card" href={href}>
   <div class="project-card__picture">
-    {image && <img src={image} alt="" loading="lazy" />}
+    {image && <img src={image} alt="" loading="lazy" onerror="this.style.visibility='hidden'" />}
   </div>
   <div class="project-card__text">
     <p class="body-m project-card__title">{title}</p>

@@ -1,0 +1,182 @@
+---
+// About — Figma "About" (2528:4273, Structure fixes WIP)
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Ticker from '../components/Ticker.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ClosingBlock from '../components/ClosingBlock.astro';
+import { projects } from '../data/site';
+
+const beliefs = [
+  ['🧭', 'The people stuck in a problem know more about it than any brief does'],
+  ['🌱', 'Creating is in our nature — design is just one way we get to use it'],
+  ['🔁', 'Showing up consistently beats chasing perfect'],
+  ['🌍', 'No single truth exists — every problem has more than one right answer'],
+  ['🧘🏽‍♀️', 'Good work and a good life run on the same fuel: curiosity, movement, and rest'],
+];
+
+// Tilt angles match the Figma cards
+const inspiration = [
+  { label: 'Travel and adventure', img: '/assets/inspo-travel.jpg', tilt: -5.09 },
+  { label: 'Cultures', img: '/assets/inspo-cultures.jpg', tilt: 1.96 },
+  { label: 'Fitness and Wellness', img: '/assets/inspo-wellness.jpg', tilt: -3.82 },
+  { label: 'Nature', img: '/assets/inspo-nature.jpg', tilt: 2 },
+  { label: 'History and Art', img: '/assets/inspo-art.jpg', tilt: -3.82 },
+];
+const hide = "this.style.visibility='hidden'";
+---
+<Base title="About — Estefani Ruiz" active="About">
+  <!-- Intro -->
+  <section class="about-hero page-section">
+    <div class="about-hero__card">
+      <h1 class="highlight-hxl about-hero__title">
+        <span>I believe we’re all</span>
+        <span class="about-hero__accent">creative beings</span>
+        <span>at heart.</span>
+      </h1>
+      <div class="body-l about-hero__text">
+        <p>I'm Estefani, born and raised in "el pulgarcito de América" — El Salvador. Even as a kid, I was the one drawing on every scrap of paper, always a little too curious about what was beyond home.</p>
+        <p>That curiosity turned me into a designer, and later, into a digital nomad 🌎 chasing new cities, new languages, new ways of seeing a problem. Travel stopped being a break from my work and became part of how I do it.</p>
+        <p>Lately, that same curiosity has me deep into yoga and wellness 🪷 another lens on the same question I ask in my work: how do we make complicated things feel human again?</p>
+        <p>I believe we're all creative beings at heart, and that beauty and function were never supposed to be at odds.</p>
+      </div>
+    </div>
+    <div class="about-hero__photos" aria-hidden="true">
+      <img class="about-hero__photo about-hero__photo--back" src="/assets/about-polaroid-2.png" alt="" onerror={hide} />
+      <img class="about-hero__photo about-hero__photo--front" src="/assets/about-polaroid-1.png" alt="" onerror={hide} />
+    </div>
+  </section>
+
+  <Ticker phrases={['“To be creative means to be in love with life.” — OSHO', '“Creativity is a wild mind and a disciplined eye.” — Dorothy Parker']} />
+
+  <!-- I believe -->
+  <section class="beliefs page-section">
+    <img class="beliefs__paper" src="/assets/paper.png" alt="" aria-hidden="true" onerror="this.style.display='none'" />
+    <h2 class="heading-h0">I believe...</h2>
+    <ul class="heading-h2 beliefs__list">
+      {beliefs.map(([emoji, text]) => <li><span aria-hidden="true">{emoji}</span> {text}</li>)}
+    </ul>
+  </section>
+
+  <!-- Inspiration -->
+  <section class="inspo page-section" aria-labelledby="inspo-title">
+    <h2 id="inspo-title" class="inspo__title">i find inspiration in</h2>
+    <div class="inspo__row">
+      {inspiration.map((c) => (
+        <figure class="inspo__card" style={`--tilt:${c.tilt}deg`}>
+          <div class="inspo__picture"><img src={c.img} alt="" loading="lazy" onerror={hide} /></div>
+          <figcaption class="body-m">{c.label}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <div class="body-l inspo__text">
+      <p>I’ve embraced solo travel for years, which has transformed how I see the world and approach challenges. This journey has taught me to view problems through <strong>diverse lenses</strong> — whether in design, infrastructure, services, or experiences.</p>
+      <p>By broadening my perspective, I’ve learned that no single truth exists and that every challenge has multiple facets to address. This mindset enriches both my personal life and my work, allowing me to craft thoughtful, inclusive, and impactful solutions.</p>
+      <p>From exploring the Amazon Rainforest 🌳 to hiking 32 kilometres in Patagonia 🏔️, and living in some of the world’s most vibrant cities 🌆, my nomadic adventures have deepened this perspective. They’ve taught me resilience, the importance of community and connection, as well as the value of prioritising mental, physical, and emotional well-being.</p>
+      <p>At the core of it all, I’ve realised we’re all here to experience life. <strong>This belief fuels my passion for designing meaningful and impactful experiences that truly resonate with people.</strong></p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects page-section" aria-labelledby="projects-title">
+    <SectionTitle sparkles={false} tone="primary" id="projects-title">projects</SectionTitle>
+    <div class="projects__row">
+      {projects.map((p) => <ProjectCard {...p} />)}
+    </div>
+    <Button href="/work" iconRight="fa-solid fa-arrow-right">dive deeper</Button>
+  </section>
+
+  <ClosingBlock title="I bring vision and structure to your next project." body="Let’s create magic together." />
+
+  <Ticker />
+</Base>
+
+<style>
+  /* Intro */
+  .about-hero { position: relative; padding-top: var(--spacing-72); padding-bottom: var(--spacing-60); }
+  .about-hero__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-32);
+    padding: var(--card-padding) var(--spacing-72);
+    background: var(--surface-neutral-ghost);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-24);
+  }
+  .about-hero__title { display: flex; flex-direction: column; line-height: 1; color: var(--text-neutral-base); }
+  .about-hero__accent { color: var(--text-secondary-loud); }
+  .about-hero__text { display: flex; flex-direction: column; gap: 1.25em; color: var(--text-neutral-quiet); }
+  .about-hero__photos { position: absolute; top: 23px; right: calc(var(--page-padding-l) + 16px); width: 430px; height: 320px; pointer-events: none; }
+  .about-hero__photo { position: absolute; height: auto; filter: drop-shadow(0 10px 7.5px rgba(0, 0, 0, 0.08)); }
+  .about-hero__photo--back { left: 0; top: 41px; width: 257px; }
+  .about-hero__photo--front { right: 0; top: 0; width: 263px; }
+
+  /* Beliefs */
+  .beliefs {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-10);
+    padding-block: var(--spacing-80);
+  }
+  .beliefs__paper { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; pointer-events: none; }
+  .beliefs__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-8); max-width: 1050px; }
+
+  /* Inspiration */
+  .inspo { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-32); padding-block: var(--spacing-40); overflow: hidden; }
+  .inspo__title { font-family: var(--font-secondary); font-size: var(--text-size-heading-h1); color: var(--text-primary-base); }
+  .inspo__row { display: flex; gap: var(--spacing-12); justify-content: center; width: max-content; max-width: none; }
+  .inspo__card {
+    margin: 0;
+    width: 226px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: var(--spacing-12);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-silent);
+    border-radius: var(--radius-12);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+    transform: rotate(var(--tilt));
+    transition: transform 0.25s ease;
+  }
+  .inspo__card:hover { transform: rotate(0deg) scale(1.03); }
+  .inspo__picture { height: 190px; border-radius: var(--radius-12); background: var(--bg-page); overflow: hidden; }
+  .inspo__picture img { width: 100%; height: 100%; object-fit: cover; }
+  .inspo__card figcaption { font-weight: 500; }
+  .inspo__text { display: flex; flex-direction: column; gap: 1.25em; max-width: 1050px; color: var(--text-neutral-quiet); }
+  .inspo__text strong { font-weight: 700; }
+
+  /* Projects */
+  .projects { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-28); padding-block: var(--spacing-40); }
+  .projects__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-20); width: 100%; }
+
+  @media (max-width: 1279px) {
+    .about-hero__photos { width: 340px; transform: scale(0.8); transform-origin: top right; }
+    .about-hero__card { padding-right: 380px; }
+  }
+  @media (max-width: 1023px) {
+    .about-hero { display: flex; flex-direction: column-reverse; gap: var(--spacing-24); }
+    .about-hero__photos { position: relative; inset: auto; align-self: center; transform: none; width: 340px; height: 260px; }
+    .about-hero__photo--back { width: 200px; }
+    .about-hero__photo--front { width: 210px; }
+    .about-hero__card { padding: var(--card-padding); }
+    .inspo__row { width: 100%; justify-content: flex-start; overflow-x: auto; padding: var(--spacing-20) var(--spacing-8); scroll-snap-type: x mandatory; }
+    .inspo__card { scroll-snap-align: center; }
+    .projects__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 767px) {
+    .about-hero { padding-top: var(--spacing-32); padding-bottom: var(--spacing-32); }
+    .about-hero__photos { width: 300px; height: 220px; }
+    .about-hero__photo--back { width: 170px; }
+    .about-hero__photo--front { width: 180px; }
+    .beliefs { align-items: flex-start; padding-block: var(--spacing-48); }
+    .inspo__card { width: 200px; }
+    .inspo__picture { height: 160px; }
+    .projects__row { grid-template-columns: 1fr; }
+  }
+</style>

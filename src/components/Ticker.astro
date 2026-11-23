@@ -1,9 +1,10 @@
 ---
-// Blush band: "Form meets function * Design meets emotion", scrolling.
-const phrases = ['Form meets function', 'Design meets emotion'];
-const items = Array.from({ length: 4 }, () => phrases).flat();
+// Blush band, scrolling. Default: "Form meets function * Design meets emotion".
+interface Props { phrases?: string[] }
+const { phrases = ['Form meets function', 'Design meets emotion'] } = Astro.props;
+const items = Array.from({ length: Math.max(2, Math.ceil(8 / phrases.length)) }, () => phrases).flat();
 ---
-<div class="ticker" aria-label="Form meets function. Design meets emotion.">
+<div class="ticker" aria-label={phrases.join(' ')}>
   <div class="ticker__track" aria-hidden="true">
     {[0, 1].map(() => (
       <div class="ticker__group">

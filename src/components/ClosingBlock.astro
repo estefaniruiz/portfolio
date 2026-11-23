@@ -1,0 +1,69 @@
+---
+// Closing block (Figma 2442:1063) — for About, Work and every case study.
+// Turn off showNext on Work and About.
+import Button from './Button.astro';
+import { site } from '../data/site';
+interface Props {
+  title?: string;
+  body?: string;
+  showNext?: boolean;
+  nextLabel?: string;
+  nextHref?: string;
+}
+const {
+  title = 'Got a messy problem?',
+  body = "I'm open to remote product design roles and projects.",
+  showNext = false,
+  nextLabel,
+  nextHref,
+} = Astro.props;
+---
+<section class="closing page-section">
+  <img class="closing__paper" src="/assets/paper.png" alt="" aria-hidden="true" loading="lazy" onerror="this.style.display='none'" />
+  <h2 class="closing__title">{title}</h2>
+  <p class="body-l closing__body">{body}</p>
+  <div class="closing__actions">
+    <Button href={`mailto:${site.email}`} iconRight="fa-solid fa-envelope">Let's talk</Button>
+    <Button href={site.cv} type="secondary" iconRight="fa-solid fa-download" download>Download CV</Button>
+    <Button href={site.linkedin} type="secondary" iconLeft="fa-brands fa-linkedin" external>LinkedIn</Button>
+  </div>
+  {showNext && nextHref && (
+    <a class="body-s closing__next" href={nextHref}>{nextLabel} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  )}
+</section>
+
+<style>
+  .closing {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2xl);
+    padding-block: var(--page-padding-xl);
+    text-align: center;
+    isolation: isolate;
+  }
+  .closing__paper {
+    position: absolute;
+    left: 50%;
+    bottom: -249px;
+    width: 652px;
+    height: 864px;
+    transform: translateX(-50%) rotate(-90deg);
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .closing__title {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: var(--text-size-highlight-3xl);
+    color: var(--text-neutral-loud);
+    max-width: 640px;
+    line-height: 1.15;
+  }
+  .closing__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--button-gap); }
+  .closing__next { display: inline-flex; gap: var(--spacing-8); align-items: center; padding-top: var(--spacing-16); color: var(--text-primary-base); text-decoration: none; }
+  .closing__next:hover { text-decoration: underline; }
+</style>
