@@ -10,12 +10,12 @@ seo:
 hero:
   kicker: "Migration made easy:"
   title: Traveler's Pre-Check WebApp
+  tags: [GovTech, WebApp, Design Systems]
   facts:
     - { icon: "👤", label: "Client:", value: "El Salvador's Ministry of Justice" }
     - { icon: "⚡", label: "Design Team:", value: "Estefani Ruiz (Lead UX)" }
     - { icon: "⚒️", label: "Tools:", value: "Figma, Jira, Miro" }
     - { icon: "⚒️", label: "Methodology:", value: "SCRUM, Agile Design" }
-    - { icon: "📅", label: "Year:", value: "2022-2023" }
   image: /assets/projects/webapp-viajeros/hero.png
   imageAlt: The pre-check web app on a phone
 
