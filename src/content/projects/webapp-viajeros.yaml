@@ -16,13 +16,13 @@ hero:
     - { icon: "⚡", label: "Design Team:", value: "Estefani Ruiz (Lead UX)" }
     - { icon: "⚒️", label: "Tools:", value: "Figma, Jira, Miro" }
     - { icon: "⚒️", label: "Methodology:", value: "SCRUM, Agile Design" }
-  image: /assets/projects/webapp-viajeros/hero.png
+  image: /assets/projects/webapp-viajeros/hero.webp
   imageAlt: The pre-check web app on a phone
 
 summary:
   name: Traveler's Pre-Check WebApp
   subtitle: Helping 86 million travelers cross El Salvador's borders faster — before they even reach the airport
-  image: /assets/projects/webapp-viajeros/summary.jpg
+  image: /assets/projects/webapp-viajeros/summary.webp
   imageAlt: Screens from the pre-check web app
   problem: Peak tourism season pushed border queues to their limit, straining migration officers and frustrating travelers.
   role: Lead UX/UI — research, wireframes, prototyping, and field testing.
@@ -58,19 +58,19 @@ role:
     - { icon: multiple-users, label: user testing }
   galleryColumns: 2
   gallery:
-    - { image: /assets/projects/webapp-viajeros/wireframes.png, alt: Low-fidelity wireframes of the pre-check flow, ratio: "465 / 400" }
-    - { image: /assets/projects/webapp-viajeros/prototype.png, alt: High-fidelity prototype screens, ratio: "465 / 400" }
+    - { image: /assets/projects/webapp-viajeros/wireframes.webp, alt: Low-fidelity wireframes of the pre-check flow, ratio: "465 / 400" }
+    - { image: /assets/projects/webapp-viajeros/figma-file.webp, alt: The Figma file with the high-fidelity screens, ratio: "465 / 400" }
 
 solution:
   statement: A web app that lets travelers handle the paperwork before they ever reach the border — whether it's their first crossing or their fiftieth.
   features:
     - title: Verifying Identity
       body: "Onboarding was designed to feel quick, not like paperwork: travelers confirm their identity, take a quick selfie, and add a passport if they choose. For local travelers, linking directly to their national ID skipped several steps entirely."
-      image: /assets/projects/webapp-viajeros/feature-identity.png
+      image: /assets/projects/webapp-viajeros/feature-identity.webp
       imageAlt: Identity verification screens with selfie step
     - title: One flow, any way you're crossing
       body: Whether arriving by air, land, or sea, travelers pre-check the same way — trip details, arrival info, and a customs declaration, all before they reach the border.
-      image: /assets/projects/webapp-viajeros/feature-flow.png
+      image: /assets/projects/webapp-viajeros/feature-flow.webp
       imageAlt: Pre-check flow screens for trip and customs details
   learnings:
     title: What we learned along the way...
@@ -82,7 +82,7 @@ solution:
 result:
   title: A Faster Way Across the Border
   body: The WebApp Viajeros became a flexible, reliable companion to El Salvador's broader migration modernization — giving travelers control over part of a process that used to be entirely out of their hands. It's one of my favorite projects, not just for the positive feedback, but because it made a tangible difference in how people experienced crossing a border.
-  image: /assets/projects/webapp-viajeros/result.png
+  image: /assets/projects/webapp-viajeros/result.webp
   imageAlt: The final pre-check web app
   note: (As with most agency work, we didn't have a formal post-launch measurement window — but live field testing consistently showed travelers completing pre-check faster and with far less friction than the standard in-person process.)
   takeaway:
