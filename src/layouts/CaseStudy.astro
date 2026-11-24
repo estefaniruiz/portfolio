@@ -115,7 +115,7 @@ const summaryCards = [
     {role.gallery.length > 0 && (
       <div class="cs-gallery-grid" style={`--gallery-cols:${role.galleryColumns}`}>
         {role.gallery.map((g: any) => (
-          <img class="cs-gallery" style={g.ratio ? `aspect-ratio:${g.ratio}` : ''} src={g.image} alt={g.alt} loading="lazy" onerror={hide} />
+          <img class={`cs-gallery${g.wide ? " cs-gallery--wide" : ""}`} style={g.ratio ? `aspect-ratio:${g.ratio}` : ''} src={g.image} alt={g.alt} loading="lazy" onerror={hide} />
         ))}
       </div>
     )}
@@ -301,6 +301,7 @@ const summaryCards = [
   }
   .cs-skill span { color: var(--text-neutral-base); }
   .cs-gallery-grid { display: grid; grid-template-columns: repeat(var(--gallery-cols, 1), minmax(0, 1fr)); gap: var(--spacing-xl); }
+  .cs-gallery--wide { grid-column: 1 / -1; }
   .cs-gallery { width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-16); background: var(--bg-page); }
 
   /* ---------- 6 · Solution ---------- */

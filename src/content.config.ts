@@ -45,7 +45,7 @@ const projects = defineCollection({
       imageAlt: z.string().optional(),
       text: z.string(),
       skills: z.array(z.object({ icon: z.enum(['lupa', 'goal', 'dotted-square', 'spiral-outline', 'multiple-users']), label: z.string() })),
-      gallery: z.array(z.object({ image: z.string(), alt: z.string(), ratio: z.string().optional() })).default([]),
+      gallery: z.array(z.object({ image: z.string(), alt: z.string(), ratio: z.string().optional(), wide: z.boolean().default(false) })).default([]),
       galleryColumns: z.number().default(1), // 2 = images side by side
     }),
     solution: z.object({

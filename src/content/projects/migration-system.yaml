@@ -17,13 +17,13 @@ hero:
     - { icon: "⚡", label: "Design Team:", value: "Estefani Ruiz (Lead UX) & Gabriela José" }
     - { icon: "⚒️", label: "Tools:", value: "Figma, Jira, Miro" }
     - { icon: "⚒️", label: "Methodology:", value: "Scrum, Lean UX" }
-  image: /assets/projects/migration-system/hero.png
+  image: /assets/projects/migration-system/hero.webp
   imageAlt: The migration system on a laptop, a tablet and a phone
 
 summary:
   name: Integrated Migration Management System
   subtitle: Modernizing how El Salvador processes 86 million border crossings a year
-  image: /assets/projects/migration-system/summary.jpg
+  image: /assets/projects/migration-system/summary.webp
   imageAlt: Screens from the migration system
   problem: A 12-year-old legacy system was slowing down migration officers and creating long queues for travelers at every border — air, land, and sea.
   role: Lead UX/UI — including stepping in to help shape the product itself after the project started without a Product Owner.
@@ -40,7 +40,7 @@ challenge:
       body: That was daily life at El Salvador's General Directorate of Migration and Immigration (DGME), processing roughly 86 million crossings a year across air, land, and sea borders.
     - title: Everyone was losing time. Nobody had a good workaround.
       body: So... we got to work ⚡
-  sticker: /assets/projects/migration-system/challenge-sticker.jpg
+  sticker: /assets/projects/migration-system/user-analyst.webp
   stickerAlt: An officer's screen at a migration counter
 
 users:
@@ -48,23 +48,23 @@ users:
   people:
     - name: Passenger Analyst
       body: Trying to clear alerts and flag restricted travelers on a platform that duplicated traveler records and made search painfully slow
-      image: /assets/projects/migration-system/user-analyst.jpg
+      image: /assets/projects/migration-system/user-analyst.webp
       imageAlt: A passenger analyst pointing at the old system on screen
       credit: Image by Estefani Ruiz
     - name: Migration Officer
       body: Doing the actual face-to-face processing — hit hardest by unnecessary steps and manual passport entry whenever the OCR failed
-      image: /assets/projects/migration-system/user-officer.jpg
+      image: /assets/projects/migration-system/user-officer.webp
       imageAlt: Migration counters at the airport
       credit: Image by Migración y Extranjería de El Salvador
     - name: Traveler
       body: Local and international, who just wanted to get through the border and get on with their trip
-      image: /assets/projects/migration-system/user-traveler.jpg
+      image: /assets/projects/migration-system/user-traveler.webp
       imageAlt: A traveler on a plane
       credit: Image by Estefani Ruiz
   outro: Understanding all three was the only way to design something that would actually hold up in a live border crossing, not just in a prototype demo.
 
 role:
-  image: /assets/projects/migration-system/role.jpg
+  image: /assets/projects/migration-system/role.webp
   imageAlt: A migration counter window
   text: |
     I came in as **Lead UX/UI** — but early on, the project didn't have a Product Owner. Rather than wait for that gap to get filled, I worked directly with our Scrum Master to help shape what the product actually needed to be, grounding every decision in the field research we were running with officers.
@@ -76,9 +76,11 @@ role:
     - { icon: dotted-square, label: wireframing }
     - { icon: spiral-outline, label: prototyping }
     - { icon: multiple-users, label: user testing }
+  galleryColumns: 2
   gallery:
-    - { image: /assets/projects/migration-system/wireframes.png, alt: Hand-drawn low-fidelity wireframes of the flights screens, ratio: "982 / 333" }
-    - { image: /assets/projects/migration-system/figma-file.jpg, alt: The Figma file with the high-fidelity screens, ratio: "1002 / 489" }
+    - { image: /assets/projects/migration-system/wireframes-1.webp, alt: Hand-drawn wireframe of the flights list }
+    - { image: /assets/projects/migration-system/wireframes-2.webp, alt: Hand-drawn wireframe of the traveler record }
+    - { image: /assets/projects/migration-system/figma-file.webp, alt: The Figma file with the high-fidelity screens, ratio: "1002 / 489", wide: true }
 
 solution:
   statement: One integrated system that gave officers everything they needed in one place, and gave travelers a way to skip most of the wait entirely.
@@ -90,14 +92,14 @@ solution:
   features:
     - title: Clear view of all upcoming flights ✈️ ...
       body: Displaying key details like airline, flight number, and any alerts. It also gave migration officers a complete overview of every passenger on the flight, keeping them informed at every step.
-      image: /assets/projects/migration-system/feature-flights.png
+      image: /assets/projects/migration-system/feature-flights.webp
       imageAlt: Flight details screen
     - title: Easy access to passenger’s details...
       body: Document number, nationality, and, in the case of Salvadoran minors, critical family information like parents, legal guardians, and supporting documents. Everything they needed was right at their fingertips, streamlining the process even further.
-      image: /assets/projects/migration-system/feature-passenger.png
+      image: /assets/projects/migration-system/feature-passenger.webp
       imageAlt: Passenger record with family and guardian details
   showcase:
-    image: /assets/projects/migration-system/showcase.jpg
+    image: /assets/projects/migration-system/showcase.webp
     alt: The migration system on a laptop
   learnings:
     title: What we learned along the way...
@@ -111,7 +113,7 @@ solution:
 result:
   title: A Modern Migration System
   body: "This shipped as a live, cloud-based replacement for a system that had gone unchanged for over a decade — used daily by officers processing millions of travelers a year. As one migration officer, Kathy, put it:"
-  image: /assets/projects/migration-system/result.png
+  image: /assets/projects/migration-system/hero.webp
   imageAlt: The final system on laptop, tablet and phone
   quote:
     text: “The new system is a big improvement from the old one, it’s more functional and the design looks so much better”
@@ -120,7 +122,7 @@ result:
   takeaway:
     text: >-
       This was one of the most demanding projects I've worked on — not because of the screens, but because of everything underneath them: understanding how a border actually functions, what officers deal with hour to hour, and what it means to design for millions of people who'll never know your name but will feel the difference every time they cross.
-    image: /assets/projects/migration-system/takeaway.jpg
+    image: /assets/projects/migration-system/takeaway.webp
 
 next:
   label: "Next project: WebApp Viajeros"
