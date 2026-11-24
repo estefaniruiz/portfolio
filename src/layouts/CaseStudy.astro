@@ -31,7 +31,7 @@ const summaryCards = [
       <div class="cs-hero__content">
         <p class="heading-h2 cs-hero__kicker" set:html={kicker} />
         <h1 class="cs-hero__title">{hero.title}</h1>
-        <ul class="cs-tags">{hero.tags.map((t: string) => <li>{t}</li>)}</ul>
+        {hero.tags.length > 0 && <ul class="cs-tags">{hero.tags.map((t: string) => <li>{t}</li>)}</ul>}
         <ul class="cs-facts">
           {hero.facts.map((f: any) => <li><span aria-hidden="true">{f.icon}</span> <strong>{f.label}</strong> {f.value}</li>)}
         </ul>
@@ -81,14 +81,16 @@ const summaryCards = [
   {users && (
     <section class="cs-section cs-section--xl cs-band page-section" aria-labelledby="users-title">
       <CaseTitle style="centered" id="users-title">meeting the users</CaseTitle>
-      <p class="body-l cs-center">{users.intro}</p>
-      <div class="cs-users">
+      <p class="body-l cs-center" set:html={inline(users.intro)} />
+      <div class="cs-users" style={`--user-cols:${Math.min(users.people.length, 3)}`}>
         {users.people.map((u: any) => (
           <article class="cs-user">
-            <div class="cs-user__picture">
-              <img src={u.image} alt={u.imageAlt} loading="lazy" onerror={hide} />
-              {u.credit && <span class="cs-user__credit">{u.credit}</span>}
-            </div>
+            {u.image && (
+              <div class="cs-user__picture">
+                <img src={u.image} alt={u.imageAlt || ''} loading="lazy" onerror={hide} />
+                {u.credit && <span class="cs-user__credit">{u.credit}</span>}
+              </div>
+            )}
             <div class="cs-user__body">
               <p class="heading-h3 cs-user__name"><Icon name="single-user" size={32} />{u.name}</p>
               <p class="body-l">{u.body}</p>
@@ -96,37 +98,41 @@ const summaryCards = [
           </article>
         ))}
       </div>
-      {users.outro && <p class="body-l cs-center">{users.outro}</p>}
+      {users.outro && <p class="body-l cs-center" set:html={inline(users.outro)} />}
     </section>
   )}
 
   <!-- 5 · My role -->
   <section class="cs-section cs-section--xl cs-role page-section" aria-labelledby="role-title">
     <CaseTitle id="role-title">my role and how i approached it...</CaseTitle>
-    <div class="cs-role__intro">
-      <img class="cs-role__image" src={role.image} alt={role.imageAlt} loading="lazy" onerror={hide} />
+    <div class={`cs-role__intro ${role.image ? '' : 'cs-role__intro--text'}`}>
+      {role.image && <img class="cs-role__image" src={role.image} alt={role.imageAlt || ''} loading="lazy" onerror={hide} />}
       <div class="body-l cs-rich" set:html={paragraphs(role.text)} />
     </div>
     <ul class="cs-skills">
       {role.skills.map((s: any) => <li class="cs-skill"><Icon name={s.icon} size={32} /><span>{s.label}</span></li>)}
     </ul>
-    {role.gallery.map((g: any) => (
-      <img class="cs-gallery" style={g.ratio ? `aspect-ratio:${g.ratio}` : ''} src={g.image} alt={g.alt} loading="lazy" onerror={hide} />
-    ))}
+    {role.gallery.length > 0 && (
+      <div class="cs-gallery-grid" style={`--gallery-cols:${role.galleryColumns}`}>
+        {role.gallery.map((g: any) => (
+          <img class="cs-gallery" style={g.ratio ? `aspect-ratio:${g.ratio}` : ''} src={g.image} alt={g.alt} loading="lazy" onerror={hide} />
+        ))}
+      </div>
+    )}
   </section>
 
   <!-- 6 · The solution -->
   <section class="cs-section cs-band page-section" aria-labelledby="solution-title">
     <CaseTitle style="centered" id="solution-title">💡 the solution</CaseTitle>
     <p class="highlight-2xl-regular cs-statement">{solution.statement}</p>
-    <div class="cs-grid-2">
+    {solution.groups.length > 0 && <div class="cs-grid-2">
       {solution.groups.map((g: any) => (
         <article class="cs-card">
           <h3 class="heading-h1">{g.title}</h3>
           <p class="body-l" set:html={inline(g.body)} />
         </article>
       ))}
-    </div>
+    </div>}
     {solution.features.length > 0 && (
       <div class="cs-grid-2">
         {solution.features.map((f: any) => (
@@ -146,7 +152,7 @@ const summaryCards = [
           <h3 class="heading-h4 bold">{solution.learnings.title}</h3>
           <p class="body-xl">{solution.learnings.intro}</p>
         </div>
-        <div class="cs-grid-2 cs-grid-2--tight">
+        <div class="cs-grid-2 cs-grid-2--tight" style={solution.learnings.items.length === 1 ? 'grid-template-columns:1fr' : ''}>
           {solution.learnings.items.map((l: any) => (
             <div class="cs-learning">
               <p class="body-l bold cs-label"><Icon name="goal" size={20} />{l.label}</p>
@@ -272,7 +278,7 @@ const summaryCards = [
   }
 
   /* ---------- 4 · Users ---------- */
-  .cs-users { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-l); }
+  .cs-users { display: grid; grid-template-columns: repeat(var(--user-cols, 3), minmax(0, 1fr)); gap: var(--spacing-l); }
   .cs-user { display: flex; flex-direction: column; border-radius: var(--radius-14, 14px); overflow: hidden; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04); background: var(--surface-neutral-raised); }
   .cs-user__picture { position: relative; height: 220px; background: var(--bg-page); }
   .cs-user__picture img { width: 100%; height: 100%; object-fit: cover; }
@@ -284,6 +290,7 @@ const summaryCards = [
   .cs-role { gap: var(--spacing-xl); padding-top: var(--spacing-32); padding-bottom: var(--spacing-80); }
   .cs-role__intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-xl); align-items: stretch; }
   .cs-role__image { width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: var(--radius-16); background: var(--bg-page); }
+  .cs-role__intro--text { grid-template-columns: 1fr; }
   .cs-rich { display: flex; flex-direction: column; gap: 1.2em; }
   .cs-rich :global(strong) { font-weight: 700; }
   .cs-skills { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--spacing-xl); }
@@ -293,6 +300,7 @@ const summaryCards = [
     color: var(--text-secondary-base); font-size: var(--text-size-body-xl);
   }
   .cs-skill span { color: var(--text-neutral-base); }
+  .cs-gallery-grid { display: grid; grid-template-columns: repeat(var(--gallery-cols, 1), minmax(0, 1fr)); gap: var(--spacing-xl); }
   .cs-gallery { width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-16); background: var(--bg-page); }
 
   /* ---------- 6 · Solution ---------- */
@@ -335,7 +343,7 @@ const summaryCards = [
   }
   @media (max-width: 767px) {
     .cs-section { gap: var(--spacing-24); padding-block: var(--spacing-40); }
-    .cs-grid-2, .cs-users, .cs-summary__grid, .cs-role__intro { grid-template-columns: 1fr; }
+    .cs-grid-2, .cs-users, .cs-summary__grid, .cs-role__intro, .cs-gallery-grid { grid-template-columns: 1fr; }
     .cs-summary__image { height: 300px; }
     .cs-summary__header { position: static; }
     .cs-summary__cell { min-height: 0; padding: var(--spacing-32) var(--spacing-20); }

@@ -1,0 +1,94 @@
+# Case study: Traveler's Pre-Check WebApp (WebApp Viajeros)
+# Figma: "Case study v2 (WebApp Viajeros)" (2531:2150)
+# Text supports **bold** and *italic*. A blank line starts a new paragraph.
+# Images live in /public/assets/projects/webapp-viajeros/
+
+seo:
+  title: Traveler's Pre-Check WebApp — Estefani Ruiz
+  description: How I designed a web app that lets travelers pre-check their entry to El Salvador before they ever reach the border.
+
+hero:
+  kicker: "Migration made easy:"
+  title: Traveler's Pre-Check WebApp
+  facts:
+    - { icon: "👤", label: "Client:", value: "El Salvador's Ministry of Justice" }
+    - { icon: "⚡", label: "Design Team:", value: "Estefani Ruiz (Lead UX)" }
+    - { icon: "⚒️", label: "Tools:", value: "Figma, Jira, Miro" }
+    - { icon: "⚒️", label: "Methodology:", value: "SCRUM, Agile Design" }
+    - { icon: "📅", label: "Year:", value: "2022-2023" }
+  image: /assets/projects/webapp-viajeros/hero.png
+  imageAlt: The pre-check web app on a phone
+
+summary:
+  name: Traveler's Pre-Check WebApp
+  subtitle: Helping 86 million travelers cross El Salvador's borders faster — before they even reach the airport
+  image: /assets/projects/webapp-viajeros/summary.jpg
+  imageAlt: Screens from the pre-check web app
+  problem: Peak tourism season pushed border queues to their limit, straining migration officers and frustrating travelers.
+  role: Lead UX/UI — research, wireframes, prototyping, and field testing.
+  built: A web app that let travelers pre-check their entry or departure — by air, land, or sea — before arriving at the border.
+  outcome: A faster, less stressful crossing for travelers, and lighter peak-season load for officers.
+
+challenge:
+  cards:
+    - title: Every year, tourism season fills El Salvador's borders past capacity.
+      body: Officers work as fast as they can, but the queues stretch anyway — and travelers, especially families, absorb most of that wait.
+    - title: We needed a companion...
+      body: "to the Integrated Migration Management System already underway: instead of easing the officer's side of the counter alone, could we take some of the process off the counter entirely, before a traveler ever got there?"
+
+users:
+  intro: "Two traveler groups shaped this app, each with a different relationship to the border:"
+  people:
+    - name: Local Travelers
+      body: Salvadorans crossing in and out, wanting the fastest possible path through a process they've done many times before.
+    - name: International Travelers
+      body: Visitors less familiar with the system, needing more clarity and guidance to get through smoothly.
+  outro: Both groups shared the same core goal → **cross as smoothly and quickly as possible** - but needed different levels of hand-holding to get there.
+
+role:
+  text: |
+    I led UX/UI on this app, grounding the design in real research rather than assumptions — user interviews, my own travel experience, and insights carried over from the Migration System project. I also looked at how other countries handled pre-check systems, borrowing what worked and steering clear of what didn't.
+
+    From there: low-fidelity wireframes first, then high-fidelity prototypes for client demos and testing — continuously iterating as each round of feedback surfaced something new.
+  skills:
+    - { icon: lupa, label: user research }
+    - { icon: goal, label: problem solving }
+    - { icon: dotted-square, label: wireframing }
+    - { icon: spiral-outline, label: prototyping }
+    - { icon: multiple-users, label: user testing }
+  galleryColumns: 2
+  gallery:
+    - { image: /assets/projects/webapp-viajeros/wireframes.png, alt: Low-fidelity wireframes of the pre-check flow, ratio: "465 / 400" }
+    - { image: /assets/projects/webapp-viajeros/prototype.png, alt: High-fidelity prototype screens, ratio: "465 / 400" }
+
+solution:
+  statement: A web app that lets travelers handle the paperwork before they ever reach the border — whether it's their first crossing or their fiftieth.
+  features:
+    - title: Verifying Identity
+      body: "Onboarding was designed to feel quick, not like paperwork: travelers confirm their identity, take a quick selfie, and add a passport if they choose. For local travelers, linking directly to their national ID skipped several steps entirely."
+      image: /assets/projects/webapp-viajeros/feature-identity.png
+      imageAlt: Identity verification screens with selfie step
+    - title: One flow, any way you're crossing
+      body: Whether arriving by air, land, or sea, travelers pre-check the same way — trip details, arrival info, and a customs declaration, all before they reach the border.
+      image: /assets/projects/webapp-viajeros/feature-flow.png
+      imageAlt: Pre-check flow screens for trip and customs details
+  learnings:
+    title: What we learned along the way...
+    intro: We didn't just test this in a controlled environment — we brought it to the field, testing live at the airport to see how real travelers responded in the moment, not just in a demo.
+    items:
+      - label: Field Testing Insight
+        body: "A few hiccups showed up under real conditions that hadn't appeared in earlier testing. But the response was clear: travelers said they'd genuinely use the app if it meant a faster trip — especially those traveling with family, where every minute saved at the border compounds fast."
+
+result:
+  title: A Faster Way Across the Border
+  body: The WebApp Viajeros became a flexible, reliable companion to El Salvador's broader migration modernization — giving travelers control over part of a process that used to be entirely out of their hands. It's one of my favorite projects, not just for the positive feedback, but because it made a tangible difference in how people experienced crossing a border.
+  image: /assets/projects/webapp-viajeros/result.png
+  imageAlt: The final pre-check web app
+  note: (As with most agency work, we didn't have a formal post-launch measurement window — but live field testing consistently showed travelers completing pre-check faster and with far less friction than the standard in-person process.)
+  takeaway:
+    text: Designing this alongside the Migration System taught me how connected these systems really are — you can't fix one side of a border crossing without thinking about the other. It also reminded me that the best research sometimes comes from living the problem yourself, not just interviewing people who have.
+    image: /assets/projects/webapp-viajeros/takeaway.jpg
+
+next:
+  label: "Next project: Protege Seguros"
+  href: /work/protege-seguros
