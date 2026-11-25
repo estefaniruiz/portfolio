@@ -7,7 +7,7 @@ export const site = {
   email: 'estefaniruiz.design@gmail.com',
   linkedin: 'https://www.linkedin.com/in/estefaniruiz/',
   instagram: 'https://www.instagram.com/estefaniruiz/',
-  cv: '/cv.pdf', // drop your CV into /public as cv.pdf
+  cv: '/CV_EstefaniRuiz_ProductDesigner.pdf', // replace this file in /public to update the CV
 };
 
 export const nav = [
