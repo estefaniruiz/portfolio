@@ -90,5 +90,5 @@ result:
     image: /assets/projects/webapp-viajeros/takeaway.jpg
 
 next:
-  label: "Next project: Protege Seguros"
-  href: /work/protege-seguros
+  label: "Next project: Transforming Migration Systems"
+  href: /work/migration-system

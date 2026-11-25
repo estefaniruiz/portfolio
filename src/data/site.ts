@@ -19,12 +19,14 @@ export const nav = [
 // All projects. `featured: true` shows on the homepage and About.
 // Images go in /public/assets (see the asset checklist).
 export const projects = [
-  { title: 'Transforming Migration Systems', meta: 'Government · Web app', href: '/work/migration-system', image: '/assets/project-migration.jpg', featured: true },
-  { title: "Traveler's Pre-Check WebApp", meta: 'Government · Web app', href: '/work/webapp-viajeros', image: '/assets/project-viajeros.jpg', featured: false },
+  { title: 'Transforming Migration Systems', meta: 'Government · Web app', href: '/work/migration-system', image: '/assets/project-migration.webp', featured: true, live: true },
+  { title: "Traveler's Pre-Check WebApp", meta: 'Government · Web app', href: '/work/webapp-viajeros', image: '/assets/project-viajeros.webp', featured: true, live: true },
   { title: 'Building an Insurance Ecosystem from Scratch', meta: 'Insurance · Web platform', href: '/work/protege-seguros', image: '/assets/project-protege.jpg', featured: true },
   { title: 'Modernizing Digital Banking', meta: 'Fintech · Mobile app', href: '/work/credicomer', image: '/assets/project-credicomer.jpg', featured: false },
   { title: 'Making Banking Effortless', meta: 'Fintech · Mobile app', href: '/work/banco-azul', image: '/assets/project-banco-azul.jpg', featured: true },
 ];
 
 // Homepage / About order
-export const featured = [projects[0], projects[4], projects[2]];
+// MVP: only finished case studies show. Add live: true to a project when its page is ready.
+export const live = projects.filter((p) => p.live);
+export const featured = live;
