@@ -2,6 +2,7 @@
 // Closing block (Figma 2442:1063) — for About, Work and every case study.
 // Turn off showNext on Work and About.
 import Button from './Button.astro';
+import ContactMenu from './ContactMenu.astro';
 import CopyEmail from './CopyEmail.astro';
 import { site, mailto } from '../data/site';
 interface Props {
@@ -24,7 +25,7 @@ const {
   <h2 class="closing__title">{title}</h2>
   <p class="body-l closing__body">{body}</p>
   <div class="closing__actions">
-    <Button href={mailto} iconRight="fa-solid fa-envelope">Let's talk</Button>
+    <ContactMenu align="center" up />
     <Button href={site.cv} type="secondary" iconRight="fa-solid fa-download" download>Download CV</Button>
     <Button href={site.linkedin} type="secondary" iconLeft="fa-brands fa-linkedin" external>LinkedIn</Button>
   </div>

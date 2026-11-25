@@ -2,6 +2,7 @@
 // Nav/Desktop (Figma 2442:1008) + Nav/Mobile (2442:1009) + Menu/Mobile open (2442:1027)
 import Logo from './Logo.astro';
 import Button from './Button.astro';
+import ContactMenu from './ContactMenu.astro';
 import { nav, site, mailto } from '../data/site';
 interface Props { active?: 'Work' | 'Services' | 'About' }
 const { active } = Astro.props;
@@ -18,7 +19,7 @@ const { active } = Astro.props;
     <a href={site.cv} class="nav-item" download>
       <span>CV <i class="fa-solid fa-download" aria-hidden="true"></i></span>
     </a>
-    <Button href={mailto} iconRight="fa-solid fa-arrow-right">Let's talk</Button>
+    <ContactMenu icon="fa-solid fa-arrow-right" align="right" />
   </nav>
 
   <button class="nav__burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
@@ -34,7 +35,7 @@ const { active } = Astro.props;
       </a>
     ))}
     <a href={site.cv} class="nav-item nav-item--mobile" download><span>CV <i class="fa-solid fa-download" aria-hidden="true"></i></span></a>
-    <Button href={mailto} iconRight="fa-solid fa-arrow-right">Let's talk</Button>
+    <ContactMenu icon="fa-solid fa-arrow-right" />
   </nav>
 </div>
 

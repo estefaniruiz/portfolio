@@ -1,0 +1,94 @@
+---
+// "Let's talk" button that opens a small menu: Gmail · Outlook · mail app · copy email.
+// Works for people without a default mail app (the button alone would open a blank tab).
+import Button from './Button.astro';
+import { site, mailto, contactLinks } from '../data/site';
+interface Props {
+  type?: 'primary' | 'secondary';
+  icon?: string;
+  align?: 'left' | 'center' | 'right'; // which side of the button the menu lines up with
+  up?: boolean; // open above the button (for sections that clip overflow)
+}
+const { type = 'primary', icon = 'fa-solid fa-envelope', align = 'left', up = false } = Astro.props;
+---
+<div class={`contact contact--${align}${up ? ' contact--up' : ''}`}>
+  <Button href={mailto} type={type} iconRight={icon}><slot>Let's talk</slot></Button>
+  <div class="contact__menu" role="menu" hidden>
+    <a role="menuitem" class="contact__item" href={contactLinks.gmail} target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-google" aria-hidden="true"></i> Open in Gmail
+    </a>
+    <a role="menuitem" class="contact__item" href={contactLinks.outlook} target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-microsoft" aria-hidden="true"></i> Open in Outlook
+    </a>
+    <a role="menuitem" class="contact__item" href={mailto}>
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i> Open mail app
+    </a>
+    <button role="menuitem" type="button" class="contact__item contact__copy" data-email={site.email}>
+      <i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy email</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  const closeAll = (except?: Element) => {
+    document.querySelectorAll('.contact__menu').forEach((m) => {
+      if (m !== except) { (m as HTMLElement).hidden = true; m.previousElementSibling?.setAttribute('aria-expanded', 'false'); }
+    });
+  };
+  document.querySelectorAll<HTMLElement>('.contact').forEach((wrap) => {
+    const trigger = wrap.querySelector<HTMLAnchorElement>('a.btn')!;
+    const menu = wrap.querySelector<HTMLElement>('.contact__menu')!;
+    trigger.setAttribute('aria-haspopup', 'menu');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const open = menu.hidden;
+      closeAll(menu);
+      menu.hidden = !open;
+      trigger.setAttribute('aria-expanded', String(open));
+      if (open) menu.querySelector<HTMLElement>('.contact__item')?.focus();
+    });
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => closeAll()));
+    const copy = menu.querySelector<HTMLButtonElement>('.contact__copy')!;
+    copy.addEventListener('click', async () => {
+      const email = copy.dataset.email ?? '';
+      try { await navigator.clipboard.writeText(email); }
+      catch {
+        const t = document.createElement('textarea'); t.value = email; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch {} t.remove();
+      }
+      const icon = copy.querySelector('i')!, label = copy.querySelector('span')!;
+      icon.className = 'fa-solid fa-check'; label.textContent = 'Copied!';
+      setTimeout(() => { icon.className = 'fa-regular fa-copy'; label.textContent = 'Copy email'; closeAll(); }, 1200);
+    });
+  });
+  document.addEventListener('click', (e) => { if (!(e.target as Element).closest('.contact')) closeAll(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+</script>
+
+<style>
+  .contact { position: relative; display: inline-flex; }
+  .contact__menu {
+    position: absolute; top: calc(100% + var(--spacing-8)); z-index: 50;
+    display: flex; flex-direction: column; min-width: 220px;
+    padding: var(--spacing-8);
+    background: var(--surface-neutral-raised);
+    border: 1px solid var(--border-neutral-quiet);
+    border-radius: var(--radius-12);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    text-align: left;
+  }
+  .contact--up .contact__menu { top: auto; bottom: calc(100% + var(--spacing-8)); }
+  .contact__menu[hidden] { display: none; }
+  .contact--left .contact__menu { left: 0; }
+  .contact--right .contact__menu { right: 0; }
+  .contact--center .contact__menu { left: 50%; transform: translateX(-50%); }
+  .contact__item {
+    display: flex; align-items: center; gap: var(--spacing-12);
+    padding: var(--spacing-12); border: 0; border-radius: var(--radius-8);
+    background: none; cursor: pointer; text-decoration: none; white-space: nowrap;
+    font: inherit; font-size: var(--text-size-body-m); color: var(--text-neutral-loud);
+  }
+  .contact__item i { width: 16px; text-align: center; color: var(--text-primary-base); }
+  .contact__item:hover, .contact__item:focus-visible { background: var(--surface-primary-ghost); outline: none; }
+</style>

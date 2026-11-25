@@ -12,6 +12,11 @@ export const site = {
   cv: '/CV_EstefaniRuiz_ProductDesigner.pdf', // replace this file in /public to update the CV
 };
 
+const enc = encodeURIComponent;
+export const contactLinks = {
+  gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${site.email}&su=${enc(site.emailSubject)}`,
+  outlook: `https://outlook.live.com/mail/0/deeplink/compose?to=${site.email}&subject=${enc(site.emailSubject)}`,
+};
 export const mailto = `mailto:${site.email}?subject=${encodeURIComponent(site.emailSubject)}`;
 
 export const nav = [

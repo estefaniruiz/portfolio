@@ -2,6 +2,7 @@
 // Home — Figma "Home v2 — structure fixes" (2440:825)
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
+import ContactMenu from '../components/ContactMenu.astro';
 import CopyEmail from '../components/CopyEmail.astro';
 import Ticker from '../components/Ticker.astro';
 import SectionTitle from '../components/SectionTitle.astro';
@@ -93,7 +94,7 @@ const approach = [
       </p>
       <div class="about__actions">
         <Button href="/about" type="secondary" iconRight="fa-solid fa-arrow-right">get to know me</Button>
-        <Button href={mailto} type="secondary" iconRight="fa-solid fa-envelope">Contact</Button>
+        <ContactMenu type="secondary">Contact</ContactMenu>
       </div>
       <CopyEmail />
     </div>
