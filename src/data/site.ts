@@ -7,8 +7,12 @@ export const site = {
   email: 'estefaniruiz.design@gmail.com',
   linkedin: 'https://www.linkedin.com/in/estefaniruiz/',
   instagram: 'https://www.instagram.com/estefaniruiz/',
+  // Subject that pre-fills when someone clicks "Let's talk"
+  emailSubject: 'Hi Estefi 👋 saw your portfolio',
   cv: '/CV_EstefaniRuiz_ProductDesigner.pdf', // replace this file in /public to update the CV
 };
+
+export const mailto = `mailto:${site.email}?subject=${encodeURIComponent(site.emailSubject)}`;
 
 export const nav = [
   { label: 'Work', href: '/work' },

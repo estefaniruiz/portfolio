@@ -1,0 +1,41 @@
+---
+// Shows the email with a copy button — a fallback for people whose mail app doesn't open.
+import { site } from '../data/site';
+interface Props { tone?: 'default' | 'light' }
+const { tone = 'default' } = Astro.props;
+---
+<button type="button" class={`copy-email body-s copy-email--${tone}`} data-email={site.email} aria-label={`Copy email address ${site.email}`}>
+  <span class="copy-email__text">{site.email}</span>
+  <i class="fa-regular fa-copy copy-email__icon" aria-hidden="true"></i>
+  <span class="copy-email__done" aria-live="polite"></span>
+</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-email').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const email = btn.dataset.email ?? '';
+      try { await navigator.clipboard.writeText(email); }
+      catch {
+        const t = document.createElement('textarea'); t.value = email; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch {} t.remove();
+      }
+      const done = btn.querySelector('.copy-email__done')!;
+      const icon = btn.querySelector('.copy-email__icon')!;
+      icon.className = 'fa-solid fa-check copy-email__icon'; done.textContent = 'Copied!';
+      setTimeout(() => { icon.className = 'fa-regular fa-copy copy-email__icon'; done.textContent = ''; }, 2000);
+    });
+  });
+</script>
+
+<style>
+  .copy-email {
+    display: inline-flex; align-items: center; gap: var(--spacing-8);
+    padding: var(--spacing-4) var(--spacing-8);
+    background: none; border: 0; border-radius: var(--radius-8); cursor: pointer;
+    color: var(--text-neutral-silent); font: inherit;
+  }
+  .copy-email:hover { color: var(--text-neutral-loud); background: color-mix(in srgb, currentColor 8%, transparent); }
+  .copy-email:focus-visible { outline: 2px solid var(--text-primary-base); outline-offset: 2px; }
+  .copy-email__text { text-decoration: underline; text-underline-offset: 3px; }
+  .copy-email__done { color: var(--text-primary-base); }
+</style>

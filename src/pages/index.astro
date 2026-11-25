@@ -2,10 +2,11 @@
 // Home — Figma "Home v2 — structure fixes" (2440:825)
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
+import CopyEmail from '../components/CopyEmail.astro';
 import Ticker from '../components/Ticker.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { site, featured as projects } from '../data/site';
+import { site, featured as projects, mailto } from '../data/site';
 
 const approach = [
   { title: 'I start with the people stuck in the system, not the brief. 🗯️', body: "Before I open Figma, I'm in the room with the people actually living the problem. The brief tells me what they asked for. They tell me what they need." },
@@ -92,8 +93,9 @@ const approach = [
       </p>
       <div class="about__actions">
         <Button href="/about" type="secondary" iconRight="fa-solid fa-arrow-right">get to know me</Button>
-        <Button href={`mailto:${site.email}`} type="secondary" iconRight="fa-solid fa-envelope">Contact</Button>
+        <Button href={mailto} type="secondary" iconRight="fa-solid fa-envelope">Contact</Button>
       </div>
+      <CopyEmail />
     </div>
     <img class="about__collage" src="/assets/collage.webp" width="314" height="258" alt="" aria-hidden="true" loading="lazy" onerror="this.style.visibility='hidden'" />
   </section>

@@ -2,7 +2,8 @@
 // Closing block (Figma 2442:1063) — for About, Work and every case study.
 // Turn off showNext on Work and About.
 import Button from './Button.astro';
-import { site } from '../data/site';
+import CopyEmail from './CopyEmail.astro';
+import { site, mailto } from '../data/site';
 interface Props {
   title?: string;
   body?: string;
@@ -23,10 +24,11 @@ const {
   <h2 class="closing__title">{title}</h2>
   <p class="body-l closing__body">{body}</p>
   <div class="closing__actions">
-    <Button href={`mailto:${site.email}`} iconRight="fa-solid fa-envelope">Let's talk</Button>
+    <Button href={mailto} iconRight="fa-solid fa-envelope">Let's talk</Button>
     <Button href={site.cv} type="secondary" iconRight="fa-solid fa-download" download>Download CV</Button>
     <Button href={site.linkedin} type="secondary" iconLeft="fa-brands fa-linkedin" external>LinkedIn</Button>
   </div>
+  <p class="body-s closing__copy">or copy my email: <CopyEmail /></p>
   {showNext && nextHref && (
     <a class="body-s closing__next" href={nextHref}>{nextLabel} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
   )}
@@ -64,6 +66,7 @@ const {
     line-height: 1.15;
   }
   .closing__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--button-gap); }
+  .closing__copy { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--spacing-4); margin-top: calc(-1 * var(--spacing-16)); color: var(--text-neutral-silent); }
   .closing__next { display: inline-flex; gap: var(--spacing-8); align-items: center; padding-top: var(--spacing-16); color: var(--text-primary-base); text-decoration: none; }
   .closing__next:hover { text-decoration: underline; }
 </style>
